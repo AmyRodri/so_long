@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:54:41 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/05 21:17:43 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/05 23:25:16 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static char	**load_map_content(int lines, char *path)
 {
 	char	**map;
 	char	*line;
+	int		len;
 	int		fd;
 
 	fd = open(path, O_RDONLY);
@@ -66,6 +67,9 @@ static char	**load_map_content(int lines, char *path)
 	while (line)
 	{
 		map[lines++] = line;
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
 		line = get_next_line(fd);
 	}
 	map[lines] = NULL;

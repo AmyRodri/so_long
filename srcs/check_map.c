@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:06:48 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/05 22:58:41 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/05 23:24:10 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 	retantuglar
-	cercado de parede = 1
 	caracters validos (1, 0, P, C, E)
+	cercado de parede = 1
 	quantidades de elementos validos ( P = 1, C >= 1, E >= 1)
 	se todos os coletaveis são acesiveis (flodd fill)
 
@@ -28,13 +28,13 @@ int	validate_map(char **map)
 	if (!check_rectangular(map))
 		return (printf("Error: mapa não é retangular\n"), 0);
 
-	// 2️⃣ Verifica se está cercado por paredes
-	if (!check_walls(map))
-		return (printf("Error: mapa não está cercado por paredes\n"), 0);
-
-	// 3️⃣ Verifica se contém apenas caracteres válidos (1, 0, P, C, E)
+	// 2️⃣ Verifica se contém apenas caracteres válidos (1, 0, P, C, E)
 	if (!check_valid_chars(map))
 		return (printf("Error: mapa contém caracteres inválidos\n"), 0);
+
+	// 3️⃣ Verifica se está cercado por paredes
+	if (!check_walls(map))
+		return (printf("Error: mapa não está cercado por paredes\n"), 0);
 
 	// 4️⃣ Verifica a quantidade de elementos obrigatórios
 	if (!check_elements(map)) // 1 P, >=1 C, >=1 E
@@ -66,11 +66,32 @@ static int	check_rectangular(t_map *map)
 	return (1);
 }
 
-// static int	check_walls(char **map)
-// {
-	
-// 	return (1);
-// }
+static int	check_valid_char(t_map *map)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map->grid[y])
+	{
+		x = 0;
+		while (map->grid[y][x])
+		{
+			if (map->grid[y][x] != '1'
+				&& map->grid[y][x] != '0'
+				&& map->grid[y][x] != 'P'
+				&& map->grid[y][x] != 'C'
+				&& map->grid[y][x] != 'E')
+			{
+				ft_printf("y: %d x: %d\n", y, x);
+				return (erro_int("invalid character in map\n", 0));
+			}
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
 
 int	check_map(char *path, t_game *game)
 {
@@ -78,6 +99,8 @@ int	check_map(char *path, t_game *game)
 	if (!game->map.grid)
 		return (0);
 	if (!check_rectangular(&game->map))
+		return (0);
+	if (!check_valid_char(&game->map))
 		return (0);
 	print_map(game->map.grid);
 	return (1);
