@@ -1,4 +1,4 @@
-NAME        = so_log
+NAME        = so_long
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
@@ -12,7 +12,10 @@ SRCSDIR         = srcs
 OBJDIR          = objs
 
 # Fontes normais
-SRCS = main.c 
+SRCS = main.c		\
+	   utils.c		\
+	   check_map.c	\
+	   read_map.c	
 
 # Adiciona prefixo do diretório
 SRCS := $(addprefix $(SRCSDIR)/, $(SRCS))

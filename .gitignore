@@ -1,0 +1,14 @@
+# vscode extension
+.vscode
+
+# OBJS
+objs/
+
+# OBJS_LIBFT
+libft/srcs/*/*.o
+
+# static library
+libft/libft.a
+
+# EXEC push_swap
+so_long
