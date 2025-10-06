@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:06:48 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/05 22:46:18 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/05 22:58:41 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,36 @@ int	validate_map(char **map)
 }
 */
 
-static int	check_rectangular(char **map)
+static int	check_rectangular(t_map *map)
 {
 	size_t	len;
-	int		y;
 
-	y = 0;
-	len = ft_strlen(map[y]);
-	while (map[y])
+	if (!map->grid || !map->grid[0])
+		return (erro_int("map is empty\n", 0));
+	map->height = 0;
+	len = ft_strlen(map->grid[0]);
+	while (map->grid[map->height])
 	{
-		if (len != ft_strlen(map[y]))
+		if (len != ft_strlen(map->grid[map->height]))
 			return (erro_int("map is not rectangular\n", 0));
-		y++;
+		map->height++;
 	}
+	map->width = len;
 	return (1);
 }
 
-/* static int	check_walls(char **map)
-{
-	return (1);
-} */
+// static int	check_walls(char **map)
+// {
+	
+// 	return (1);
+// }
 
 int	check_map(char *path, t_game *game)
 {
 	game->map.grid = read_map(path);
 	if (!game->map.grid)
 		return (0);
-	if (!check_rectangular(game->map.grid))
+	if (!check_rectangular(&game->map))
 		return (0);
 	print_map(game->map.grid);
 	return (1);
