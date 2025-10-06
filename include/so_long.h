@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/06 12:00:46 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/06 12:32:14 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_player
 typedef struct s_map
 {
 	char	**grid;
+	char	**visualizer;
 	int		width;
 	int		height;
 	int		collectibles;
