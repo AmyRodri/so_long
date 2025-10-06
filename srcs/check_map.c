@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:06:48 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/05 21:54:23 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/05 22:46:18 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,18 @@ static int	check_rectangular(char **map)
 	return (1);
 }
 
-int	check_map(char *path, char ***map)
+/* static int	check_walls(char **map)
 {
-	*map = read_map(path);
-	if (!*map)
+	return (1);
+} */
+
+int	check_map(char *path, t_game *game)
+{
+	game->map.grid = read_map(path);
+	if (!game->map.grid)
 		return (0);
-	if (!check_rectangular(*map))
+	if (!check_rectangular(game->map.grid))
 		return (0);
-	print_map(*map);
+	print_map(game->map.grid);
 	return (1);
 }

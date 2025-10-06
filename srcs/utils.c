@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:00:31 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/05 21:36:38 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/05 22:45:56 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,20 @@ char	**erro_map(char *s)
 	return (NULL);
 }
 
-void	free_map(char **map)
+void	free_game(t_game *game)
 {
 	int	i;
 
-	if (!map)
+	if (!game)
 		return ;
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
+	if (game->map.grid)
+	{
+		i = 0;
+		while (game->map.grid[i])
+			free(game->map.grid[i++]);
+		free(game->map.grid);
+	}
+	free(game);
 }
 
 void	print_map(char **map)
