@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_reachability.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/06 02:31:08 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/06 12:01:25 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ int	check_reachability(t_map *map, t_player *player)
 		return (0);
 	locate_player(map, player);
 	flood_fill(copy, player->x, player->y);
-	y = 0;
-	while (y < map->height)
+	y = -1;
+	while (++y < map->height)
 	{
-		x = 0;
-		while (x < map->width)
+		x = -1;
+		while (++x < map->width)
 		{
 			if ((map->grid[y][x] == 'C' || map->grid[y][x] == 'E')
 			&& copy[y][x] != 'F')
@@ -103,9 +103,7 @@ int	check_reachability(t_map *map, t_player *player)
 				free_copy(copy, map->height);
 				return (erro_int("collectibles or inaccessible exit\n", 0));
 			}
-			x++;
 		}
-		y++;
 	}
 	free_copy(copy, map->height);
 	return (1);

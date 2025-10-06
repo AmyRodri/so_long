@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/06 01:25:33 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/06 12:00:46 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_map(char **map);
 char	**read_map(char *path);
 
 // check_reachability.c
-int	check_reachability(t_map *map, t_player *player);
+int		check_reachability(t_map *map, t_player *player);
 
 // check_map.c
 int		check_map(char *path, t_game *game);
