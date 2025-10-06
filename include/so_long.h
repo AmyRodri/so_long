@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/05 22:47:20 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/06 01:25:33 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	print_map(char **map);
 
 // read_map.c
 char	**read_map(char *path);
+
+// check_reachability.c
+int	check_reachability(t_map *map, t_player *player);
 
 // check_map.c
 int		check_map(char *path, t_game *game);

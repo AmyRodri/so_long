@@ -17,10 +17,11 @@ SRCSDIR     = srcs
 OBJDIR      = objs
 
 # Fontes
-SRCS = main.c		\
-	   utils.c		\
-	   check_map.c	\
-	   read_map.c
+SRCS = main.c					\
+	   utils.c					\
+	   check_map.c				\
+	   read_map.c				\
+	   check_reachability.c		
 
 # Adiciona prefixo do diretório
 SRCS := $(addprefix $(SRCSDIR)/, $(SRCS))
