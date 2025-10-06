@@ -1,21 +1,26 @@
+# ---------- Configurações ----------
 NAME        = so_long
+
+GREEN       = \033[0;32m
+YELLOW      = \033[0;33m
+NC          = \033[0m
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 INCLUDE     = -I libft/srcs/includes -I include
 
-RM          = rm -f
+RM          = rm -rf
 RUNLIB      = -C libft
 
 # Diretórios
-SRCSDIR         = srcs
-OBJDIR          = objs
+SRCSDIR     = srcs
+OBJDIR      = objs
 
-# Fontes normais
+# Fontes
 SRCS = main.c		\
 	   utils.c		\
 	   check_map.c	\
-	   read_map.c	
+	   read_map.c
 
 # Adiciona prefixo do diretório
 SRCS := $(addprefix $(SRCSDIR)/, $(SRCS))
@@ -29,29 +34,34 @@ LIBFT = libft/libft.a
 # ---------- Regras ----------
 all: $(NAME)
 
-bonus: $(NAME_BONUS)
-
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) -o $(NAME)
+	@printf "$(GREEN)🎉 Executável $(NAME) criado com sucesso!$(NC)\n"
 
-# regra para compilar arquivos normais
+# Compilar objetos
 $(OBJDIR)/%.o: $(SRCSDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@printf "$(YELLOW)⚙️ Compilando %s -> %s$(NC)\n" "$<" "$@"
 
-# cria a pasta objs se não existir
+# Criar pasta objs se não existir
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
+# Compilar libft silenciosamente
 $(LIBFT):
-	$(MAKE) $(RUNLIB)
+	@$(MAKE) $(RUNLIB) -s
+	@printf "$(GREEN)✅ Libft compilada com sucesso$(NC)\n"
 
+# Limpeza
 clean:
-	$(RM) -r $(OBJDIR)
-	$(MAKE) clean $(RUNLIB)
+	@$(RM) $(OBJDIR)
+	@$(MAKE) clean $(RUNLIB) -s
+	@printf "$(YELLOW)🧹 Objetos limpos$(NC)\n"
 
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) fclean $(RUNLIB)
+	@$(RM) $(NAME)
+	@$(MAKE) fclean $(RUNLIB) -s
+	@printf "$(YELLOW)🗑️ Executável removido$(NC)\n"
 
 re: fclean all
 
