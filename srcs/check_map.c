@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:06:48 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/06 00:10:12 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/06 00:57:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,34 @@ static int	check_walls(t_map *map)
 	return (1);
 }
 
+static int	check_elements(t_map *map)
+{
+	int	y;
+	int	x;
+	int	p;
+
+	p = 0;
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (map->grid[y][x] == 'C')
+				map->collectibles++;
+			if (map->grid[y][x] == 'E')
+				map->exits++;
+			if (map->grid[y][x] == 'P')
+				p++;
+			x++;
+		}
+		y++;
+	}
+	if (p == 1 && map->collectibles >= 1 && map->exits >= 1)
+		return (1);
+	return (erro_int("invalid element count\n", 0));
+}
+
 int	check_map(char *path, t_game *game)
 {
 	game->map.grid = read_map(path);
@@ -122,6 +150,8 @@ int	check_map(char *path, t_game *game)
 	if (!check_valid_char(&game->map))
 		return (0);
 	if (!check_walls(&game->map))
+		return (0);
+	if (!check_elements(&game->map))
 		return (0);
 	print_map(game->map.grid);
 	return (1);
