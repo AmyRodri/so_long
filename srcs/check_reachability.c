@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/06 02:29:08 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/06 02:31:08 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	check_reachability(t_map *map, t_player *player)
 			&& copy[y][x] != 'F')
 			{
 				free_copy(copy, map->height);
-				return (erro_int("elements inacessiveis\n", 0));
+				return (erro_int("collectibles or inaccessible exit\n", 0));
 			}
 			x++;
 		}
