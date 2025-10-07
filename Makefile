@@ -6,22 +6,24 @@ YELLOW      = \033[0;33m
 NC          = \033[0m
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror 
 INCLUDE     = -I libft/srcs/includes -I include
+MLX 		= -Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
 RM          = rm -rf
 RUNLIB      = -C libft
+RUNMLX      = -C minilibx-linux
 
 # Diretórios
 SRCSDIR     = srcs
 OBJDIR      = objs
 
 # Fontes
-SRCS = main.c					\
-	   utils.c					\
-	   check_map.c				\
-	   read_map.c				\
-	   check_reachability.c		
+SRCS 		= main.c				\
+			utils.c					\
+			check_map.c				\
+			read_map.c				\
+			check_reachability.c		
 
 # Adiciona prefixo do diretório
 SRCS := $(addprefix $(SRCSDIR)/, $(SRCS))
@@ -29,14 +31,15 @@ SRCS := $(addprefix $(SRCSDIR)/, $(SRCS))
 # Objetos
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
-# Lib
+# Libs
 LIBFT = libft/libft.a
+MLX_LIB = minilibx-linux/libmlx.a
 
 # ---------- Regras ----------
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLX) -o $(NAME)
 	@printf "$(GREEN)🎉 Executável $(NAME) criado com sucesso!$(NC)\n"
 
 # Compilar objetos
@@ -53,10 +56,16 @@ $(LIBFT):
 	@$(MAKE) $(RUNLIB) -s
 	@printf "$(GREEN)✅ Libft compilada com sucesso$(NC)\n"
 
+# Compilar minilibx silenciosamente
+$(MLX_LIB):
+	@$(MAKE) $(RUNMLX) -s > /dev/null 2>&1
+	@printf "$(GREEN)✅ MiniLibX compilada com sucesso$(NC)\n"
+
 # Limpeza
 clean:
 	@$(RM) $(OBJDIR)
 	@$(MAKE) clean $(RUNLIB) -s
+	@$(MAKE) clean $(RUNMLX) -s
 	@printf "$(YELLOW)🧹 Objetos limpos$(NC)\n"
 
 fclean: clean
