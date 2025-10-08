@@ -66,7 +66,7 @@ $(MLX_LIB):
 clean:
 	@$(RM) $(OBJDIR)
 	@$(MAKE) clean $(RUNLIB) -s
-	@$(MAKE) clean $(RUNMLX) -s
+	@$(MAKE) clean $(RUNMLX) -s > /dev/null 2>&1
 	@printf "$(YELLOW)🧹 Objetos limpos$(NC)\n"
 
 fclean: clean
