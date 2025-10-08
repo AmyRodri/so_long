@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/08 15:39:59 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/08 16:55:52 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,25 @@
 #define KEY_RIGHT 65363
 #define KEY_ESC 65307
 
-void render_map(t_game *game)
+void	draw_tile(void *mlx, void *win, int x, int y, int color);
+
+void	render_map(t_game *game)
 {
-	
+	for (int y = 0; game->map.grid[y]; y++)
+	{
+		for (int x = 0; game->map.grid[y][x]; x++)
+		{
+			if (game->map.grid[y][x] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.wall, x * TILE, y * TILE);
+			else
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.floor, x * TILE, y * TILE);
+			if (game->map.grid[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.coin, x * TILE, y * TILE);
+			if (game->map.grid[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.exit, x * TILE, y * TILE);
+		}
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->sprites.knight, game->player.x * TILE, game->player.y * TILE);
 }
 
 void	move_player(t_game *game, int x, int y)
@@ -39,17 +55,23 @@ void	move_player(t_game *game, int x, int y)
 		game->player.y = new_y;
 		game->player.moves++;
 		ft_printf("moves: %d\n", game->player.moves);
+		mlx_clear_window(game->mlx, game->win);
 		render_map(game);
 	}
 }
 
 int	handle_key(int keycode, void *game)
 {
-	(void)game;
 	if (keycode == KEY_ESC)
 		exit(0);
 	if (keycode == KEY_D)
 		move_player((t_game *)game, 1, 0);
+	if (keycode == KEY_A)
+		move_player((t_game *)game, -1, 0);
+	if (keycode == KEY_W)
+		move_player((t_game *)game, 0, -1);
+	if (keycode == KEY_S)
+		move_player((t_game *)game, 0, 1);
 	return (0);
 }
 
@@ -85,32 +107,19 @@ int	main(int ac, char **args)
 	if (check_args_and_map(ac, args, &game))
 		return (1);
 	ft_printf("map sucess\n");
-	void	*mlx = mlx_init();
-	void	*win = mlx_new_window(mlx, game->map.width * TILE, game->map.height * TILE, "so_long");
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->map.width * TILE, game->map.height * TILE, "so_long");
 
-	for (int y = 0; game->map.grid[y]; y++)
-	{
-		for (int x = 0; game->map.grid[y][x]; x++)
-		{
-			if (game->map.grid[y][x] == '1')
-				draw_tile(mlx, win, x * TILE, y * TILE, 0x888888);
-			if (game->map.grid[y][x] == '0')
-				draw_tile(mlx, win, x * TILE, y * TILE, 0xFFFFFF);
-			if (game->map.grid[y][x] == 'P')
-				draw_tile(mlx, win, x * TILE, y * TILE, 0x0000FF);
-			if (game->map.grid[y][x] == 'C')
-				draw_tile(mlx, win, x * TILE, y * TILE, 0xFFFF00);
-			if (game->map.grid[y][x] == 'E')
-				draw_tile(mlx, win, x * TILE, y * TILE, 0xFF0000);
-		}
-	}
+	load_sprites(game);
 	
-	mlx_string_put(mlx, win, 10, 10, 0x000000, "moves: ");
+	render_map(game);
+	
+	mlx_string_put(game->mlx, game->win, 10, 10, 0x000000, "moves: ");
 
-	mlx_key_hook(win, handle_key, game);
-	mlx_hook(win, 17, 0l, close_window, NULL);
+	mlx_key_hook(game->win, handle_key, game);
+	mlx_hook(game->win, 17, 0l, close_window, NULL);
 	
-	mlx_loop(mlx);
+	mlx_loop(game->mlx);
 	
 	free_game(game);
 	return (0);

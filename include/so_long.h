@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/08 11:00:27 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/08 16:50:50 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,26 @@ typedef struct s_map
 	int		exits;
 }	t_map;
 
+typedef struct s_sprites
+{
+	void	*floor;
+	void	*wall;
+	void	*knight;
+	void	*exit;
+	void	*coin;
+}	t_sprites;
+
+
 typedef struct s_game
 {
 	t_map		map;
 	t_player	player;
+	t_sprites	sprites;
 	int			score;
 	int			is_running;
 	int			steps;
+	void		*mlx;
+	void		*win;
 }	t_game;
 
 // utils.c
@@ -54,7 +67,11 @@ char	**erro_map(char *s);
 void	free_game(t_game *game);
 void	print_map(char **map);
 
-int	check_args_and_map(int ac, char **args, t_game **game);
+// utils2.c
+int		check_args_and_map(int ac, char **args, t_game **game);
+
+// load_sprites.c
+void	load_sprites(t_game *game);
 
 // read_map.c
 char	**read_map(char *path);

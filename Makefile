@@ -24,6 +24,7 @@ SRCS 		= main.c				\
 			utils2.c				\
 			check_map.c				\
 			read_map.c				\
+			load_sprites.c			\
 			check_reachability.c		
 
 # Adiciona prefixo do diretório
