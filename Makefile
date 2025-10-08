@@ -21,6 +21,7 @@ OBJDIR      = objs
 # Fontes
 SRCS 		= main.c				\
 			utils.c					\
+			utils2.c				\
 			check_map.c				\
 			read_map.c				\
 			check_reachability.c		
