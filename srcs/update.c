@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 19:56:23 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 20:17:19 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ static void	print_moves(t_player *p)
 {
 	p->moves++;
 	ft_printf("Moves: %d\n", p->moves);
+}
+
+static void	collect_coin(t_game *game, int x, int y)
+{
+	if (game->map.grid[y][x] == 'C')
+	{
+		game->player.collected++;
+		game->map.grid[y][x] = '0';
+		ft_printf("Moedas coletadas: %d\n", game->player.collected);
+	}
 }
 
 static void	gravity_fall(t_game *game)
@@ -79,6 +89,7 @@ static void	update_horizontal(t_game *game)
 	{
 		if (new_x != p->x)
 			print_moves(p);
+		collect_coin(game, new_x, map_y);
 		p->px = next_px;
 		p->x = new_x;
 	}

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 19:13:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 20:20:39 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ static void	print_moves_window(t_game *game)
 	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, str);
 	free(moves);
 	free(str);
+	moves = ft_itoa(game->player.collected);
+	str = ft_strjoin("coins: ", moves);
+	mlx_string_put(game->mlx, game->win, 100, 10, 0xFFFFFF, str);
 }
 
 static void	render_sprites(t_game *game, int x, int y)

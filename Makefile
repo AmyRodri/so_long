@@ -6,7 +6,7 @@ YELLOW      = \033[0;33m
 NC          = \033[0m
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -O3
 INCLUDE     = -I libft/srcs/includes -I include
 MLX 		= -Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
