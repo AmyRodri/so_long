@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 20:17:19 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 20:25:33 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ static void	print_moves(t_player *p)
 	ft_printf("Moves: %d\n", p->moves);
 }
 
-static void	collect_coin(t_game *game, int x, int y)
+static void	collect_coin_exit(t_game *game, int x, int y)
 {
 	if (game->map.grid[y][x] == 'C')
 	{
 		game->player.collected++;
 		game->map.grid[y][x] = '0';
 		ft_printf("Moedas coletadas: %d\n", game->player.collected);
+	}
+	if (game->map.grid[y][x] == 'E')
+	{
+		exit(0);
 	}
 }
 
@@ -89,7 +93,7 @@ static void	update_horizontal(t_game *game)
 	{
 		if (new_x != p->x)
 			print_moves(p);
-		collect_coin(game, new_x, map_y);
+		collect_coin_exit(game, new_x, map_y);
 		p->px = next_px;
 		p->x = new_x;
 	}
