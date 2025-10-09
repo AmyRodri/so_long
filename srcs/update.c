@@ -6,19 +6,16 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 19:34:26 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 19:56:23 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	print_moves(int new_x, t_player *p)
+static void	print_moves(t_player *p)
 {
-	if (new_x != p->x)
-	{
-		p->moves++;
-		ft_printf("Moves: %d\n", p->moves);
-	}
+	p->moves++;
+	ft_printf("Moves: %d\n", p->moves);
 }
 
 static void	gravity_fall(t_game *game)
@@ -30,11 +27,18 @@ static void	gravity_fall(t_game *game)
 	next_py = game->player.py + game->player.vy;
 	map_x = (int)game->player.px;
 	new_y = (int)next_py;
+	if (map_x < 0)
+		map_x = 0;
+	if (map_x >= game->map.width)
+		map_x = game->map.width - 1;
+	if (new_y < 0)
+		new_y = 0;
+	if (new_y >= game->map.height)
+		new_y = game->map.height - 1;
 	game->player.vy += GRAVITY;
 	if (game->player.vy > MAX_FALL_SPEED)
 		game->player.vy = MAX_FALL_SPEED;
-
-	if (new_y + 1 < game->map.height && game->map.grid[new_y + 1][map_x] != '1')
+	if (game->map.grid[new_y + 1][map_x] != '1')
 	{
 		game->player.py = next_py;
 		game->player.y = (int)game->player.py;
@@ -42,10 +46,11 @@ static void	gravity_fall(t_game *game)
 	}
 	else
 	{
-		if (!game->player.on_ground && game->player.vy > 0.3f)
-			game->player.vy *= 0.3f;
+		if (game->player.vy > 0)
+			game->player.py = new_y - 1;
 		else
-			game->player.vy = 0;
+			game->player.py = new_y + 1;
+		game->player.vy = 0;
 		game->player.on_ground = 1;
 		game->player.py = new_y;
 		game->player.y = new_y;
@@ -72,7 +77,8 @@ static void	update_horizontal(t_game *game)
 	}
 	if (game->map.grid[map_y][new_x] != '1')
 	{
-		print_moves(new_x, p);
+		if (new_x != p->x)
+			print_moves(p);
 		p->px = next_px;
 		p->x = new_x;
 	}
@@ -91,11 +97,18 @@ int	update(t_game *game)
 		p->vx += 0.05f;
 	else
 		p->vx *= 0.02f;
+	p->vx = 0;
 	if (p->left_pressed)
 		p->vx = -MOVE_SPEED;
 	if (p->right_pressed)
 		p->vx = MOVE_SPEED;
 	update_horizontal(game);
+	if (p->jump_pressed && p->on_ground)
+	{
+		p->vy = JUMP_FORCE;
+		p->on_ground = 0;
+		print_moves(p);
+	}
 	gravity_fall(game);
 	mlx_clear_window(game->mlx, game->win);
 	render_map(game);
