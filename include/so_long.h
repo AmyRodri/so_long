@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/08 16:50:50 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/09 13:34:22 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdlib.h>
+
+# define TILE 32
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_ESC 65307
 
 typedef struct s_player
 {
@@ -72,6 +81,18 @@ int		check_args_and_map(int ac, char **args, t_game **game);
 
 // load_sprites.c
 void	load_sprites(t_game *game);
+
+// mlx_utils.c
+int		handle_key(int keycode, void *game);
+int		close_window(void *param);
+void	gravity_fall(t_game *game);
+int		update(t_game *game);
+
+// render_map.c
+void	render_map(t_game *game);
+
+// moves.c
+void	move_player(t_game *game, int x, int y);
 
 // read_map.c
 char	**read_map(char *path);

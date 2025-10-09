@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_reachability.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/06 17:00:05 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/09 13:13:30 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int	check_reachability(t_map *map, t_player *player)
 		return (0);
 	locate_player(map, player);
 	flood_fill(map, player->y, player->x, 1);
-	print_map(map->visualizer);
 	y = -1;
 	while (++y < map->height)
 	{
