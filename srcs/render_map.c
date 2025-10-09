@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 13:38:58 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 16:45:45 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static void	render_sprites(t_game *game, int x, int y)
 
 void	render_map(t_game *game)
 {
-	int	y;
-	int	x;
+	char	*moves;
+	char	*str;
+	int		y;
+	int		x;
 
 	y = 0;
 	while (game->map.grid[y])
@@ -46,7 +48,9 @@ void	render_map(t_game *game)
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites.knight,
 		game->player.x * TILE, game->player.y * TILE);
-	mlx_string_put(game->mlx, game->win, 10, 10, 0x000000, "moves: ");
-	mlx_string_put(game->mlx, game->win, 50, 10, 0x000000,
-		ft_itoa(game->player.moves));
+	moves = ft_itoa(game->player.moves);
+	str = ft_strjoin("moves: ", moves);
+	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, str);
+	free(moves);
+	free(str);
 }

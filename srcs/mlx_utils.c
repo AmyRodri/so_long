@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:28:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 13:31:17 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 16:48:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	gravity_fall(t_game *game)
 int	update(t_game *game)
 {
 	gravity_fall(game);
+	mlx_clear_window(game->mlx, game->win);
 	render_map(game);
 	return (0);
 }

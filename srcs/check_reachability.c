@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 13:13:30 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 16:40:52 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	**copy_grid(t_map *map)
 	char	**copy;
 	int		y;
 
-	copy = malloc(sizeof(char *) * map->height + 1);
+	copy = malloc(sizeof(char *) * (map->height + 1));
 	if (!copy)
 		return (erro_map("malloc\n"));
 	y = 0;

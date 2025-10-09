@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:33:54 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 13:34:07 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 16:49:15 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,5 @@ void	move_player(t_game *game, int x, int y)
 		game->player.y = new_y;
 		game->player.moves++;
 		ft_printf("moves: %d\n", game->player.moves);
-		mlx_clear_window(game->mlx, game->win);
-		render_map(game);
 	}
 }
