@@ -6,24 +6,33 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:28:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 16:48:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 19:05:57 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	handle_key(int keycode, void *game)
+int	handle_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		exit(0);
 	if (keycode == KEY_D)
-		move_player((t_game *)game, 1, 0);
+		game->player.right_pressed = 1;
 	if (keycode == KEY_A)
-		move_player((t_game *)game, -1, 0);
-	if (keycode == KEY_W)
-		move_player((t_game *)game, 0, -1);
-	if (keycode == KEY_S)
-		move_player((t_game *)game, 0, 1);
+		game->player.left_pressed = 1;
+	// if (keycode == KEY_W)
+	// 	game->player.jump_pressed = 1;
+	return (0);
+}
+
+int	handle_key_release(int keycode, t_game *game)
+{
+	if (keycode == KEY_D)
+		game->player.right_pressed = 0;
+	if (keycode == KEY_A)
+		game->player.left_pressed = 0;
+	// if (keycode == KEY_W)
+	// 	game->player.jump_pressed = 0;
 	return (0);
 }
 
@@ -34,21 +43,16 @@ int	close_window(void *param)
 	return (0);
 }
 
-void	gravity_fall(t_game *game)
+void	init_player(t_player *player)
 {
-	int	below_y;
-	int	x;
-
-	below_y = game->player.y + 1;
-	x = game->player.x;
-	if (game->map.grid[below_y][x] != '1')
-		game->player.y += 1;
-}
-
-int	update(t_game *game)
-{
-	gravity_fall(game);
-	mlx_clear_window(game->mlx, game->win);
-	render_map(game);
-	return (0);
+	player->px = (float)player->x;
+	player->py = (float)player->y;
+	player->vx = 0;
+	player->vy = 0;
+	player->direction = 0;
+	player->collected = 0;
+	player->on_ground = 0;
+	player->left_pressed = 0;
+	player->right_pressed = 0;
+	player->jump_pressed = 0;
 }

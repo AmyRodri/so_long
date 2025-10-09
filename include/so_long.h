@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/09 13:34:22 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 19:18:38 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,23 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
+# define MOVE_SPEED 0.05f
+
 typedef struct s_player
 {
 	int		x;
 	int		y;
 	int		moves;
 	int		direction;
-	int		colleted;
+	int		collected;
+	int		on_ground;
+	float	px;
+	float	py;
+	float	vx;
+	float	vy;
+	int		left_pressed;
+	int		right_pressed;
+	int		jump_pressed;
 }	t_player;
 
 typedef struct s_map
@@ -83,10 +93,13 @@ int		check_args_and_map(int ac, char **args, t_game **game);
 void	load_sprites(t_game *game);
 
 // mlx_utils.c
-int		handle_key(int keycode, void *game);
+int		handle_key(int keycode, t_game *game);
+int		handle_key_release(int keycode, t_game *game);
 int		close_window(void *param);
-void	gravity_fall(t_game *game);
-int		update(t_game *game);
+void	init_player(t_player *player);
+
+// update.c
+int	update(t_game *game);
 
 // render_map.c
 void	render_map(t_game *game);

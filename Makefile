@@ -6,7 +6,7 @@ YELLOW      = \033[0;33m
 NC          = \033[0m
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror 
+CFLAGS      = -Wall -Wextra -Werror
 INCLUDE     = -I libft/srcs/includes -I include
 MLX 		= -Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
@@ -27,6 +27,7 @@ SRCS 		= main.c				\
 			load_sprites.c			\
 			mlx_utils.c				\
 			moves.c					\
+			update.c				\
 			render_map.c			\
 			check_reachability.c		
 

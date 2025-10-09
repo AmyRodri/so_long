@@ -6,11 +6,23 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 16:45:45 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 19:13:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	print_moves_window(t_game *game)
+{
+	char	*moves;
+	char	*str;
+
+	moves = ft_itoa(game->player.moves);
+	str = ft_strjoin("moves: ", moves);
+	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, str);
+	free(moves);
+	free(str);
+}
 
 static void	render_sprites(t_game *game, int x, int y)
 {
@@ -30,8 +42,6 @@ static void	render_sprites(t_game *game, int x, int y)
 
 void	render_map(t_game *game)
 {
-	char	*moves;
-	char	*str;
 	int		y;
 	int		x;
 
@@ -47,10 +57,6 @@ void	render_map(t_game *game)
 		y++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites.knight,
-		game->player.x * TILE, game->player.y * TILE);
-	moves = ft_itoa(game->player.moves);
-	str = ft_strjoin("moves: ", moves);
-	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, str);
-	free(moves);
-	free(str);
+		(int)game->player.px * TILE, (int)game->player.py * TILE);
+	print_moves_window(game);
 }
