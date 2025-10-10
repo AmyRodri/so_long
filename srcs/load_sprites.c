@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/08 16:56:32 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/09 23:02:08 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	load_sprites(t_game *game)
 {
 	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
 	game->sprites.wall = load_image(game->mlx, "assets/wall.xpm");
-	game->sprites.knight = load_image(game->mlx, "assets/knight_down_0.xpm");
+	game->sprites.knight = load_image(game->mlx, "assets/player.xpm");
 	game->sprites.exit = load_image(game->mlx, "assets/exit.xpm");
 	game->sprites.coin = load_image(game->mlx, "assets/coin_0.xpm");
 }

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/09 20:00:06 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/09 22:27:15 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define JUMP_FORCE -0.3f
 # define GRAVITY 0.07f
 # define MAX_FALL_SPEED 0.07f
-# define MOVE_SPEED 0.05f
+# define MOVE_SPEED 0.028f
 
 typedef struct s_player
 {
