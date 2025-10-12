@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/12 02:29:06 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/12 02:38:43 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_framebuffer(t_game *game)
 	int	h;
 
 	w = 640;
-	h = 384;
+	h = game->map.height * TILE;
 	game->frame.ptr = mlx_new_image(game->mlx, w, h);
 	game->frame.addr = mlx_get_data_addr(game->frame.ptr, &game->frame.bpp,
 			&game->frame.line_len, &game->frame.endian);
@@ -41,7 +41,7 @@ int	main(int ac, char **args)
 	if (check_args_and_map(ac, args, &game))
 		return (1);
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 640, 384, "so_long");
+	game->win = mlx_new_window(game->mlx, 640, game->map.height * TILE, "so_long");
 	load_sprites(game);
 	init_framebuffer(game);
 	init_player(&game->player);
