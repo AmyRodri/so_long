@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/12 00:22:13 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/12 02:29:06 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_framebuffer(t_game *game)
 	w = 640;
 	h = 384;
 	game->frame.ptr = mlx_new_image(game->mlx, w, h);
-	game->frame.addr = mlx_get_data_addr(game->mlx, &game->frame.bpp,
+	game->frame.addr = mlx_get_data_addr(game->frame.ptr, &game->frame.bpp,
 			&game->frame.line_len, &game->frame.endian);
 	game->frame.width = w;
 	game->frame.height = h;

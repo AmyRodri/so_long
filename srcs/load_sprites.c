@@ -6,21 +6,20 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/12 00:50:23 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/12 02:15:13 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	*load_image(void *mlx, char *path)
+static t_img	load_image(void *mlx, char *path)
 {
-	int		b_w;
-	int		b_h;
-	void	*img;
+	t_img	img;
 
-	img = mlx_xpm_file_to_image(mlx, path, &b_w, &b_h);
-	if (!img)
+	img.ptr = mlx_xpm_file_to_image(mlx, path, &img.width, &img.height);
+	if (!img.ptr)
 		exit(erro_int("fail load sprites\n", 1));
+	img.addr = mlx_get_data_addr(img.ptr, &img.bpp, &img.line_len, &img.endian);
 	return (img);
 }
 

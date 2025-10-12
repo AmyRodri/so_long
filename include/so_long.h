@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/12 01:37:10 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/12 02:12:53 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ typedef struct s_map
 
 typedef struct s_sprites
 {
-	void	*floor;
-	void	*wall;
-	void	*knight;
-	void	*exit;
-	void	*coin;
+	t_img	floor;
+	t_img	wall;
+	t_img	knight;
+	t_img	exit;
+	t_img	coin;
 }	t_sprites;
 
 
