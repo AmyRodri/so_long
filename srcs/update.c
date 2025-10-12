@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 22:26:08 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/12 01:57:08 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	gravity_fall(t_game *game)
 	}
 }
 
+
 static void	update_horizontal(t_game *game)
 {
 	t_player	*p;
@@ -101,7 +102,7 @@ static void	update_horizontal(t_game *game)
 		p->vx = 0;
 }
 
-int	update(t_game *game)
+static void	update_pyshical(t_game *game)
 {
 	t_player	*p;
 
@@ -125,6 +126,31 @@ int	update(t_game *game)
 		print_moves(p);
 	}
 	gravity_fall(game);
+}
+
+static void	update_cam(t_game *game)
+{
+	int	max_x;
+	int	max_y;
+
+	game->cam.x = (game->player.px * TILE) - (game->cam.width / 2);
+	game->cam.y = (game->player.py * TILE) - (game->cam.height / 2);
+	if (game->cam.x < 0)
+		game->cam.x = 0;
+	if (game->cam.y < 0)
+		game->cam.y = 0;
+	max_x = game->map.width * TILE - game->cam.width;
+	max_y = game->map.height * TILE - game->cam.height;
+	if (game->cam.x > max_x)
+		game->cam.x = max_x;
+	if (game->cam.y > max_y)
+		game->cam.y = max_y;
+}
+
+int	update(t_game *game)
+{
+	update_pyshical(game);
+	update_cam(game);
 	mlx_clear_window(game->mlx, game->win);
 	render_map(game);
 	return (0);

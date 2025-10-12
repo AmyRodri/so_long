@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/09 22:27:15 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/12 01:37:10 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,29 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
-# define JUMP_FORCE -0.3f
-# define GRAVITY 0.07f
-# define MAX_FALL_SPEED 0.07f
-# define MOVE_SPEED 0.028f
+# define JUMP_FORCE -0.1f
+# define GRAVITY 0.005f
+# define MAX_FALL_SPEED 0.005f
+# define MOVE_SPEED 0.01f
+
+typedef struct s_img
+{
+	void	*ptr;
+	void	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
+
+typedef struct s_cam
+{
+	float	x;
+	float	y;
+	int		width;
+	int		height;
+}	t_cam;
 
 typedef struct s_player
 {
@@ -75,9 +94,8 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_sprites	sprites;
-	int			score;
-	int			is_running;
-	int			steps;
+	t_img		frame;
+	t_cam		cam;
 	void		*mlx;
 	void		*win;
 }	t_game;
