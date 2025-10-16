@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/16 18:32:27 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 18:50:22 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(int ac, char **args)
 	if (check_args_and_map(ac, args, &game))
 		return (1);
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 640, game->map.height * TILE, "so_long");
+	game->win = mlx_new_window(game->mlx, 640,
+			game->map.height * TILE, "so_long");
 	load_sprites(game);
 	init_framebuffer(game);
 	init_player(&game->player);

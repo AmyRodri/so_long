@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/12 02:25:12 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 18:51:12 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ static int	is_transparent(int color)
 
 void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
 {
-	int	px;
-	int	py;
+	int		px;
+	int		py;
 	char	*src;
-	int	color;
-	int	draw_x;
-	int	draw_y;
+	int		color;
+	int		draw_x;
+	int		draw_y;
 
 	py = 0;
 	while (py < sprite->height)
@@ -119,7 +119,8 @@ void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
 				draw_x = x + px;
 				if (draw_x >= 0 && draw_x < game->frame.width)
 				{
-					src = sprite->addr + (py * sprite->line_len + px * (sprite->bpp / 8));
+					src = sprite->addr
+						+ (py * sprite->line_len + px * (sprite->bpp / 8));
 					color = *(int *)src;
 					if (!is_transparent(color))
 						put_pixel(&game->frame, draw_x, draw_y, color);
@@ -137,7 +138,7 @@ static void	draw_tile(t_game *game, char tile, int x, int y)
 		draw_sprite_to_frame(game, &game->sprites.wall, x, y);
 	else if (tile == 'C')
 		draw_sprite_to_frame(game, &game->sprites.coin, x, y);
-	else if (tile == 'E')
+	else if (tile == 'E' && game->player.collected == game->map.collectibles)
 		draw_sprite_to_frame(game, &game->sprites.exit, x, y);
 }
 

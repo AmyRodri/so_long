@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 18:42:02 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 18:51:48 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ static void	collect_coin_exit(t_game *game, int x, int y)
 		game->map.grid[y][x] = '0';
 		ft_printf("Moedas coletadas: %d\n", game->player.collected);
 	}
-	if (game->map.grid[y][x] == 'E' && game->player.collected == game->map.collectibles)
-	{
+	if (game->map.grid[y][x] == 'E'
+		&& game->player.collected == game->map.collectibles)
 		exit(0);
-	}
 }
 
 static void	gravity_fall(t_game *game)
@@ -63,7 +62,6 @@ static void	gravity_fall(t_game *game)
 		p->y = map_y;
 	}
 }
-
 
 static void	update_horizontal(t_game *game)
 {
