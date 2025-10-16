@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/12 02:30:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 17:26:12 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
-# define JUMP_FORCE -0.1f
+# define JUMP_FORCE -0.12f
 # define GRAVITY 0.005f
 # define MAX_FALL_SPEED 0.005f
 # define MOVE_SPEED 0.01f

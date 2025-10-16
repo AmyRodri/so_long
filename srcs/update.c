@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 17:09:15 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 17:27:23 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,40 +34,33 @@ static void	collect_coin_exit(t_game *game, int x, int y)
 
 static void	gravity_fall(t_game *game)
 {
+	t_player	*p;
 	float		next_py;
-	int			map_x;
-	int			new_y;
+	int			map_x_left;
+	int			map_x_right;
+	int			map_y;
 
-	next_py = game->player.py + game->player.vy;
-	map_x = (int)game->player.px;
-	new_y = (int)next_py;
-	if (map_x < 0)
-		map_x = 0;
-	if (map_x >= game->map.width)
-		map_x = game->map.width - 1;
-	if (new_y < 0)
-		new_y = 0;
-	if (new_y >= game->map.height)
-		new_y = game->map.height - 1;
-	game->player.vy += GRAVITY;
-	if (game->player.vy > MAX_FALL_SPEED)
-		game->player.vy = MAX_FALL_SPEED;
-	if (game->map.grid[new_y + 1][map_x] != '1')
+	p = &game->player;
+	next_py = p->py + p->vy;
+	map_x_left = (int)p->px;
+	map_x_right = (int)(p->px + 0.9f);
+	map_y = (int)next_py;
+	p->vy += GRAVITY;
+	if (p->vy > MAX_FALL_SPEED)
+		p->vy = MAX_FALL_SPEED;
+	if (game->map.grid[map_y + 1][map_x_left] != '1'
+		&& game->map.grid[map_y + 1][map_x_right] != '1')
 	{
-		game->player.py = next_py;
-		game->player.y = (int)game->player.py;
-		game->player.on_ground = 0;
+		p->py = next_py;
+		p->y = (int)p->py;
+		p->on_ground = 0;
 	}
 	else
 	{
-		if (game->player.vy > 0)
-			game->player.py = new_y - 1;
-		else
-			game->player.py = new_y + 1;
-		game->player.vy = 0;
-		game->player.on_ground = 1;
-		game->player.py = new_y;
-		game->player.y = new_y;
+		p->vy = 0;
+		p->on_ground = 1;
+		p->py = (float)map_y;
+		p->y = map_y;
 	}
 }
 
@@ -76,29 +69,28 @@ static void	update_horizontal(t_game *game)
 {
 	t_player	*p;
 	float		next_px;
-	int			new_x;
+	int			map_x;
 	int			map_y;
 
 	p = &game->player;
 	next_px = p->px + p->vx;
-	// new_x = (int)next_px;
 	map_y = p->y;
 	if (p->vx > 0)
-		new_x = (int)(next_px + 1.05f);
+		map_x = (int)(next_px + 1.05f);
 	else
-		new_x = (int)next_px;
-	if (new_x < 0 || new_x >= game->map.width)
+		map_x = (int)next_px;
+	if (map_x < 0 || map_x >= game->map.width)
 	{
 		p->vx = 0;
 		return ;
 	}
-	if (game->map.grid[map_y][new_x] != '1')
+	if (game->map.grid[map_y][map_x] != '1')
 	{
-		if (new_x != p->x)
+		if (map_x != p->x)
 			print_moves(p);
-		collect_coin_exit(game, new_x, map_y);
+		collect_coin_exit(game, map_x, map_y);
 		p->px = next_px;
-		p->x = new_x;
+		p->x = map_x;
 	}
 	else
 		p->vx = 0;
