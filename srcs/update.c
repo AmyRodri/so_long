@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/12 01:57:08 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 17:09:15 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ static void	update_horizontal(t_game *game)
 
 	p = &game->player;
 	next_px = p->px + p->vx;
-	new_x = (int)next_px;
+	// new_x = (int)next_px;
 	map_y = p->y;
-	if (map_y < 0 || map_y >= game->map.height)
-		return ;
+	if (p->vx > 0)
+		new_x = (int)(next_px + 1.05f);
+	else
+		new_x = (int)next_px;
 	if (new_x < 0 || new_x >= game->map.width)
 	{
 		p->vx = 0;
