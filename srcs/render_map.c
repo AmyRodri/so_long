@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 18:51:12 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 19:07:01 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,60 +28,6 @@ static void	print_moves_window(t_game *game)
 	free(moves);
 	free(str);
 }
-
-// static void	draw_background(t_game *game)
-// {
-// 	int		y;
-// 	int		x;
-
-// 	y = 0;
-// 	while (game->map.grid[y])
-// 	{
-// 		x = 0;
-// 		while (game->map.grid[y][x])
-// 		{
-// 			mlx_put_image_to_window(game->mlx, game->win,
-// 				game->sprites.floor, x * TILE, y * TILE);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-// static void	draw_elements(t_game *game)
-// {
-// 	int		y;
-// 	int		x;
-
-// 	y = 0;
-// 	while (game->map.grid[y])
-// 	{
-// 		x = 0;
-// 		while (game->map.grid[y][x])
-// 		{
-// 			if (game->map.grid[y][x] == '1')
-// 				mlx_put_image_to_window(game->mlx, game->win,
-// 					game->sprites.wall, x * TILE, y * TILE);
-// 			if (game->map.grid[y][x] == 'C')
-// 				mlx_put_image_to_window(game->mlx, game->win,
-// 					game->sprites.coin, x * TILE, y * TILE);
-// 			if (game->map.grid[y][x] == 'E')
-// 				mlx_put_image_to_window(game->mlx, game->win,
-// 					game->sprites.exit, x * TILE, y * TILE);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	mlx_put_image_to_window(game->mlx, game->win, game->sprites.knight,
-// 		(int)game->player.px * TILE, (int)game->player.py * TILE);
-// }
-
-// void	render_map(t_game *game)
-// {
-// 	draw_background(game);
-// 	draw_elements(game);
-// 	print_moves_window(game);
-// }
 
 static void	put_pixel(t_img *img, int x, int y, int color)
 {
