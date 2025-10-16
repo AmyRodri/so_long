@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 17:37:07 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 18:42:02 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	collect_coin_exit(t_game *game, int x, int y)
 		game->map.grid[y][x] = '0';
 		ft_printf("Moedas coletadas: %d\n", game->player.collected);
 	}
-	if (game->map.grid[y][x] == 'E')
+	if (game->map.grid[y][x] == 'E' && game->player.collected == game->map.collectibles)
 	{
 		exit(0);
 	}
@@ -43,7 +43,7 @@ static void	gravity_fall(t_game *game)
 	p = &game->player;
 	next_py = p->py + p->vy;
 	map_x_left = (int)p->px;
-	map_x_right = (int)(p->px + 0.9f);
+	map_x_right = (int)(p->px + 1.05f);
 	map_y = (int)next_py;
 	p->vy += GRAVITY;
 	if (p->vy > MAX_FALL_SPEED)
@@ -70,11 +70,13 @@ static void	update_horizontal(t_game *game)
 	t_player	*p;
 	float		next_px;
 	int			map_x;
-	int			map_y;
+	int			map_y_top;
+	int			map_y_bottom;
 
 	p = &game->player;
 	next_px = p->px + p->vx;
-	map_y = p->y;
+	map_y_top = (int)p->py;
+	map_y_bottom = (int)(p->py + 0.9f);
 	if (p->vx > 0)
 		map_x = (int)(next_px + 1.05f);
 	else
@@ -84,7 +86,8 @@ static void	update_horizontal(t_game *game)
 		p->vx = 0;
 		return ;
 	}
-	if (game->map.grid[map_y][map_x] != '1')
+	if (game->map.grid[map_y_top][map_x] != '1'
+		&& game->map.grid[map_y_bottom][map_x] != '1')
 	{
 		if (map_x != p->x)
 			print_moves(p);
@@ -100,24 +103,23 @@ static void	update_pyshical(t_game *game)
 	t_player	*p;
 
 	p = &game->player;
-	if (p->left_pressed)
-		p->vx -= 0.05f;
-	else if (p->right_pressed)
-		p->vx += 0.05f;
-	else
-		p->vx *= 0.02f;
 	p->vx = 0;
 	if (p->left_pressed)
 		p->vx = -MOVE_SPEED;
 	if (p->right_pressed)
 		p->vx = MOVE_SPEED;
-	update_horizontal(game);
 	if (p->jump_pressed && p->on_ground)
 	{
-		p->vy = JUMP_FORCE;
-		p->on_ground = 0;
-		print_moves(p);
+		if (game->map.grid[p->y - 1][p->x] != '1')
+		{
+			p->vy = JUMP_FORCE;
+			p->on_ground = 0;
+			print_moves(p);
+		}
 	}
+	else if (!p->jump_pressed && p->vy < 0)
+		p->vy *= 0.05f;
+	update_horizontal(game);
 	gravity_fall(game);
 	collect_coin_exit(game, (int)p->px, (int)p->py);
 	collect_coin_exit(game, (int)(p->px + 1.05f), (int)p->py);
