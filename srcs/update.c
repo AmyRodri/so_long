@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 17:27:23 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 17:37:07 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	update_horizontal(t_game *game)
 	{
 		if (map_x != p->x)
 			print_moves(p);
-		collect_coin_exit(game, map_x, map_y);
 		p->px = next_px;
 		p->x = map_x;
 	}
@@ -120,6 +119,8 @@ static void	update_pyshical(t_game *game)
 		print_moves(p);
 	}
 	gravity_fall(game);
+	collect_coin_exit(game, (int)p->px, (int)p->py);
+	collect_coin_exit(game, (int)(p->px + 1.05f), (int)p->py);
 }
 
 static void	update_cam(t_game *game)
