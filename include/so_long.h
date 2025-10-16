@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/16 18:59:20 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 19:32:18 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-# define TILE 32
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+# define KEY_UP 65362
 # define KEY_ESC 65307
 
+# define TILE 32
 # define JUMP_FORCE -0.12f
 # define GRAVITY 0.005f
 # define MAX_FALL_SPEED 0.005f

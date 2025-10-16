@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 18:51:48 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 19:11:21 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	gravity_fall(t_game *game)
 	p = &game->player;
 	next_py = p->py + p->vy;
 	map_x_left = (int)p->px;
-	map_x_right = (int)(p->px + 1.05f);
+	map_x_right = (int)(p->px + 0.9f);
 	map_y = (int)next_py;
 	p->vy += GRAVITY;
 	if (p->vy > MAX_FALL_SPEED)
@@ -76,7 +76,7 @@ static void	update_horizontal(t_game *game)
 	map_y_top = (int)p->py;
 	map_y_bottom = (int)(p->py + 0.9f);
 	if (p->vx > 0)
-		map_x = (int)(next_px + 1.05f);
+		map_x = (int)(next_px + 0.9f);
 	else
 		map_x = (int)next_px;
 	if (map_x < 0 || map_x >= game->map.width)
