@@ -6,35 +6,34 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 16:40:52 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 23:26:01 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	**copy_grid(t_map *map)
+static int	copy_grid(t_map *map)
 {
-	char	**copy;
 	int		y;
 
-	copy = malloc(sizeof(char *) * (map->height + 1));
-	if (!copy)
-		return (erro_map("malloc\n"));
+	map->visualizer = malloc(sizeof(char *) * (map->height + 1));
+	if (!map->visualizer)
+		return (erro_int("malloc\n", 0));
 	y = 0;
 	while (y < map->height)
 	{
-		copy[y] = ft_strdup(map->grid[y]);
-		if (!copy[y])
+		map->visualizer[y] = ft_strdup(map->grid[y]);
+		if (!map->visualizer[y])
 		{
 			while (--y >= 0)
-				free(copy[y]);
-			free(copy);
-			return (erro_map("strdup\n"));
+				free(map->visualizer[y]);
+			free(map->visualizer);
+			return (erro_int("strdup\n", 0));
 		}
 		y++;
 	}
-	copy[map->height] = NULL;
-	return (copy);
+	map->visualizer[map->height] = NULL;
+	return (1);
 }
 
 static void	free_copy(char **copy, int height)
@@ -104,16 +103,15 @@ int	check_reachability(t_map *map, t_player *player)
 	int		y;
 	int		x;
 
-	map->visualizer = copy_grid(map);
-	if (!map->visualizer)
+	if (!copy_grid(map))
 		return (0);
 	locate_player(map, player);
 	flood_fill(map, player->y, player->x, 1);
-	y = -1;
-	while (++y < map->height)
+	y = 0;
+	while (y < map->height)
 	{
-		x = -1;
-		while (++x < map->width)
+		x = 0;
+		while (x < map->width)
 		{
 			if ((map->grid[y][x] == 'C' || map->grid[y][x] == 'E')
 			&& map->visualizer[y][x] != 'F')
@@ -121,7 +119,9 @@ int	check_reachability(t_map *map, t_player *player)
 				free_copy(map->visualizer, map->height);
 				return (erro_int("collectibles or inaccessible exit\n", 0));
 			}
+			x++;
 		}
+		y++;
 	}
 	free_copy(map->visualizer, map->height);
 	return (1);
