@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 19:11:21 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/16 23:09:01 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,40 @@ static void	update_horizontal(t_game *game)
 		p->vx = 0;
 }
 
+static void	jumping(t_game *game)
+{
+	t_player	*p;
+	int			top_y;
+	int			left_x;
+	int			right_x;
+
+	p = &game->player;
+	if (p->jump_pressed && p->on_ground)
+	{
+		if (game->map.grid[(int)p->py - 1][(int)p->px] != '1'
+			&& game->map.grid[(int)p->py - 1][(int)(p->px + 0.9f)] != '1')
+		{
+			p->vy = JUMP_FORCE;
+			p->on_ground = 0;
+			print_moves(p);
+		}
+	}
+	else if (!p->jump_pressed && p->vy < 0)
+		p->vy *= 0.05f;
+	if (p->vy < 0)
+	{
+		top_y = (int)(p->py - 0.1f);
+		left_x = (int)p->px;
+		right_x = (int)(p->px + 0.9f);
+		if (game->map.grid[top_y][left_x] == '1'
+			&& game->map.grid[top_y][right_x] == '1')
+		{
+			p->vy = 0;
+			p->py = top_y + 1.0f;
+		}
+	}
+}
+
 static void	update_pyshical(t_game *game)
 {
 	t_player	*p;
@@ -106,21 +140,11 @@ static void	update_pyshical(t_game *game)
 		p->vx = -MOVE_SPEED;
 	if (p->right_pressed)
 		p->vx = MOVE_SPEED;
-	if (p->jump_pressed && p->on_ground)
-	{
-		if (game->map.grid[p->y - 1][p->x] != '1')
-		{
-			p->vy = JUMP_FORCE;
-			p->on_ground = 0;
-			print_moves(p);
-		}
-	}
-	else if (!p->jump_pressed && p->vy < 0)
-		p->vy *= 0.05f;
 	update_horizontal(game);
+	jumping(game);
 	gravity_fall(game);
 	collect_coin_exit(game, (int)p->px, (int)p->py);
-	collect_coin_exit(game, (int)(p->px + 1.05f), (int)p->py);
+	collect_coin_exit(game, (int)(p->px + 0.9f), (int)(p->py + 0.9f));
 }
 
 static void	update_cam(t_game *game)
