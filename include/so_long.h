@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 11:36:35 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:13:11 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,11 @@ int		update(t_game *game);
 
 // render_map.c
 void	render_map(t_game *game);
+
+// draw_tile.c
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
+void	draw_tile(t_game *game, char tile, int x, int y);
 
 // moves.c
 void	move_player(t_game *game, int x, int y);

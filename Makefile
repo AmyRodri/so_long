@@ -29,6 +29,7 @@ SRCS 		= main.c				\
 			moves.c					\
 			update.c				\
 			render_map.c			\
+			draw_tile.c				\
 			check_reachability.c		
 
 # Adiciona prefixo do diretório
