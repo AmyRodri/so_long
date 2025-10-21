@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 12:40:10 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 15:52:38 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,21 @@ static int	get_gradient_color(int top, int bottom, float t)
 
 void	draw_sky(t_game *game, int top_color, int bottom_color)
 {
-	int		y;
-	int		x;
+	t_point	pt;
 	float	t;
 	int		color;
 
-	y = 0;
-	while (y < game->frame.height)
+	pt.y = 0;
+	while (pt.y < game->frame.height)
 	{
-		t = (float)y / (float)game->frame.height;
+		t = (float)pt.y / (float)game->frame.height;
 		color = get_gradient_color(top_color, bottom_color, t);
-		x = 0;
-		while (x < game->frame.width)
+		pt.x = 0;
+		while (pt.x < game->frame.width)
 		{
-			put_pixel(&game->frame, x, y, color);
-			x++;
+			put_pixel(&game->frame, pt.x, pt.y, color);
+			pt.x++;
 		}
-		y++;
+		pt.y++;
 	}
 }

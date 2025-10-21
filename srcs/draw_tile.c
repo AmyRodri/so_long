@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 14:56:11 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:03:53 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,54 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-// static void	draw_sla(t_game *game, t_img *sprite, int x, int y)
-// {
-
-// }
-
-void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
+static void	draw_pixel_safe(t_game *game, t_img *sprite,
+	t_point frame_pt, t_point sprite_pt)
 {
-	int		px;
-	int		py;
 	char	*src;
 	int		color;
-	int		draw_x;
-	int		draw_y;
 
-	py = 0;
-	while (py < sprite->height)
+	if (frame_pt.x >= 0 && frame_pt.x < game->frame.width)
 	{
-		draw_y = y + py;
-		if (draw_y >= 0 && draw_y < game->frame.height)
-		{
-			px = 0;
-			while (px < sprite->width)
-			{
-				draw_x = x + px;
-				if (draw_x >= 0 && draw_x < game->frame.width)
-				{
-					src = sprite->addr
-						+ (py * sprite->line_len + px * (sprite->bpp / 8));
-					color = *(int *)src;
-					if (color == 0xFF00FF)
-						put_pixel(&game->frame, draw_x, draw_y, 0x00FF00);
-					else
-						put_pixel(&game->frame, draw_x, draw_y, color);
-				}
-				px++;
-			}
-		}
-		py++;
+		src = sprite->addr
+			+ (sprite_pt.y * sprite->line_len
+				+ sprite_pt.x * (sprite->bpp / 8));
+		color = *(int *)src;
+		if (color != 0xFF00FF)
+			put_pixel(&game->frame, frame_pt.x, frame_pt.y, color);
 	}
 }
 
-void	draw_tile(t_game *game, char tile, int x, int y)
+static void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
+{
+	t_point	frame_pt;
+	t_point	sprite_pt;
+
+	sprite_pt.y = 0;
+	while (sprite_pt.y < sprite->height)
+	{
+		frame_pt.y = y + sprite_pt.y;
+		if (frame_pt.y >= 0 && frame_pt.y < game->frame.height)
+		{
+			sprite_pt.x = 0;
+			while (sprite_pt.x < sprite->width)
+			{
+				frame_pt.x = x + sprite_pt.x;
+				draw_pixel_safe(game, sprite, frame_pt, sprite_pt);
+				sprite_pt.x++;
+			}
+		}
+		sprite_pt.y++;
+	}
+}
+
+void	draw_tile(t_game *game, char tile, t_point pt)
 {
 	if (tile == '1')
-		draw_sprite_to_frame(game, &game->sprites.wall, x, y);
+		draw_sprite_to_frame(game, &game->sprites.wall, pt.x, pt.y);
 	else if (tile == 'C')
-		draw_sprite_to_frame(game, &game->sprites.coin, x, y);
+		draw_sprite_to_frame(game, &game->sprites.coin, pt.x, pt.y);
 	else if (tile == 'E' && game->player.collected == game->map.collectibles)
-		draw_sprite_to_frame(game, &game->sprites.exit, x, y);
+		draw_sprite_to_frame(game, &game->sprites.exit, pt.x, pt.y);
 	else if (tile == 'p')
-		draw_sprite_to_frame(game, &game->sprites.knight, x, y);
+		draw_sprite_to_frame(game, &game->sprites.knight, pt.x, pt.y);
 }

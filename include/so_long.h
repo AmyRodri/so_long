@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 12:40:27 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:03:26 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 # define GRAVITY 0.002f
 # define MAX_FALL_SPEED 0.002f
 # define MOVE_SPEED 0.005f
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_img
 {
@@ -109,6 +115,8 @@ void	print_map(char **map);
 
 // utils2.c
 int		check_args_and_map(int ac, char **args, t_game **game);
+void	init_framebuffer(t_game *game);
+void	init_cam(t_game *game);
 
 // load_sprites.c
 void	load_sprites(t_game *game);
@@ -127,8 +135,7 @@ void	render_map(t_game *game);
 
 // draw_tile.c
 void	put_pixel(t_img *img, int x, int y, int color);
-void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
-void	draw_tile(t_game *game, char tile, int x, int y);
+void	draw_tile(t_game *game, char tile, t_point pt);
 
 // draw_sky.c
 void	draw_sky(t_game *game, int top_color, int bottom_color);

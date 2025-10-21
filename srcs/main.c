@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/16 22:58:05 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/21 15:53:42 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	init_framebuffer(t_game *game)
-{
-	int	w;
-	int	h;
-
-	w = 640;
-	h = game->map.height * TILE;
-	game->frame.ptr = mlx_new_image(game->mlx, w, h);
-	game->frame.addr = mlx_get_data_addr(game->frame.ptr, &game->frame.bpp,
-			&game->frame.line_len, &game->frame.endian);
-	game->frame.width = w;
-	game->frame.height = h;
-}
-
-void	init_cam(t_game *game)
-{
-	game->cam.width = game->frame.width;
-	game->cam.height = game->frame.height;
-	game->cam.x = 0;
-	game->cam.y = 0;
-}
 
 int	main(int ac, char **args)
 {

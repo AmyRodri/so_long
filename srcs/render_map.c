@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/21 12:41:22 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:08:01 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,35 @@ static void	get_start_end(int *coords, t_game *game)
 
 static void	render_visible_tiles(t_game *game)
 {
-	int	x;
-	int	y;
-	int	coords[4];
+	t_point	pt;
+	t_point	draw_pt;
+	int		coords[4];
 
 	get_start_end(coords, game);
-	y = coords[0];
-	while (y < coords[1])
+	pt.y = coords[0];
+	while (pt.y < coords[1])
 	{
-		x = coords[2];
-		while (x < coords[3])
+		pt.x = coords[2];
+		while (pt.x < coords[3])
 		{
-			draw_tile(game, game->map.grid[y][x],
-				x * TILE - game->cam.x,
-				y * TILE - game->cam.y);
-			x++;
+			draw_pt.x = pt.x * TILE - game->cam.x;
+			draw_pt.y = pt.y * TILE - game->cam.y;
+			draw_tile(game, game->map.grid[pt.y][pt.x], draw_pt);
+			pt.x++;
 		}
-		y++;
+		pt.y++;
 	}
 }
 
 void	render_map(t_game *game)
 {
-	int	draw_x;
-	int	draw_y;
+	t_point	pt;
 
 	draw_sky(game, 0x001a66, 0x87CEEB);
 	render_visible_tiles(game);
-	draw_x = (int)(game->player.px * TILE - game->cam.x);
-	draw_y = (int)(game->player.py * TILE - game->cam.y);
-	draw_tile(game, 'p', draw_x, draw_y);
+	pt.x = (int)(game->player.px * TILE - game->cam.x);
+	pt.y = (int)(game->player.py * TILE - game->cam.y);
+	draw_tile(game, 'p', pt);
 	mlx_put_image_to_window(game->mlx, game->win, game->frame.ptr, 0, 0);
 	print_moves_window(game);
 }
