@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 16:03:26 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:50:46 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_player
 	int		left_pressed;
 	int		right_pressed;
 	int		jump_pressed;
+	int		jump_time;
 }	t_player;
 
 typedef struct s_map
@@ -117,6 +118,15 @@ void	print_map(char **map);
 int		check_args_and_map(int ac, char **args, t_game **game);
 void	init_framebuffer(t_game *game);
 void	init_cam(t_game *game);
+void	print_moves(t_player *p);
+void	collect_coin_exit(t_game *game, int x, int y);
+
+// move_vertical.c
+void	jumping(t_game *game);
+void	gravity_fall(t_game *game);
+
+// move_horizontal.c
+void	update_horizontal(t_game *game);
 
 // load_sprites.c
 void	load_sprites(t_game *game);

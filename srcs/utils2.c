@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 15:53:49 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:46:56 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,23 @@ void	init_cam(t_game *game)
 	game->cam.height = game->frame.height;
 	game->cam.x = 0;
 	game->cam.y = 0;
+}
+
+void	print_moves(t_player *p)
+{
+	p->moves++;
+	ft_printf("Moves: %d\n", p->moves);
+}
+
+void	collect_coin_exit(t_game *game, int x, int y)
+{
+	if (game->map.grid[y][x] == 'C')
+	{
+		game->player.collected++;
+		game->map.grid[y][x] = '0';
+		ft_printf("Moedas coletadas: %d\n", game->player.collected);
+	}
+	if (game->map.grid[y][x] == 'E'
+		&& game->player.collected == game->map.collectibles)
+		exit(0);
 }
