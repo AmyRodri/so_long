@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:46:00 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 19:27:20 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:44:52 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static uint32_t	g_seed = 0;
 
-static uint32_t	get_init_seed(void)
+uint32_t	get_init_seed(void)
 {
 	struct timeval	tv;
 

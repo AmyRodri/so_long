@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 19:18:01 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:58:55 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define TILE 32
 # define MAX_CLD 10
+# define MAX_STAR 100
 
 # define JUMP_FORCE -0.08f
 # define GRAVITY 0.002f
@@ -126,7 +127,9 @@ typedef struct s_game
 	t_img		frame;
 	t_cam		cam;
 	t_cld_itc	clds[MAX_CLD];
+	t_cld_itc	star[MAX_STAR];
 	int			num_clds;
+	int			num_star;
 	void		*mlx;
 	void		*win;
 }	t_game;
@@ -189,6 +192,7 @@ int			check_reachability(t_map *map, t_player *player);
 int			check_map(char *path, t_game *game);
 
 // ft_rand.c
+uint32_t	get_init_seed(void);
 uint32_t	ft_rand(void);
 uint32_t	ft_rand_range(uint32_t max);
 void		ft_srand(uint32_t s);

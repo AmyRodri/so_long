@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 19:29:13 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:59:29 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_clouds(t_game *game)
 {
 	int	i;
 
-	ft_srand(time(NULL));
+	ft_srand(get_init_seed());
 	game->num_clds = 10;
 	i = 0;
 	while (i < game->num_clds)
@@ -44,6 +44,30 @@ void	init_clouds(t_game *game)
 		game->clds[i].x = ft_rand() % (game->map.width * TILE - 32);
 		game->clds[i].y = ft_rand() % (game->map.height * TILE / 2);
 		game->clds[i].index = ft_rand() % 10;
+		i++;
+	}
+	game->num_star = 100;
+	i = 0;
+	while (i < game->num_star)
+	{
+		game->star[i].x = ft_rand() % (game->map.width * TILE);
+		game->star[i].y = ft_rand() % (game->map.height * TILE / 2);
+		game->star[i].index = ft_rand() % 3 + 1;
+		i++;
+	}
+}
+
+static void	draw_stars(t_game *game)
+{
+	t_point	pt;
+	int		i;
+
+	i = 0;
+	while (i < game->num_star)
+	{
+		pt.x = game->star[i].x - game->cam.x / 5;
+		pt.y = game->star[i].y - game->cam.y;
+		put_pixel(&game->frame, pt.x, pt.y, 0xFFFFFF);
 		i++;
 	}
 }
@@ -93,5 +117,6 @@ void	draw_sky(t_game *game, int top_color, int bottom_color)
 		}
 		pt.y++;
 	}
+	draw_stars(game);
 	draw_clouds(game);
 }
