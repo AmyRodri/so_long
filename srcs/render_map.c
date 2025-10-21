@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/21 12:18:35 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:36:49 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,48 +75,52 @@ static void	draw_sky(t_game *game, int top_color, int bottom_color)
 	}
 }
 
-static void	get_start_end(int *start_y, int *end_y, int *start_x, int *end_x, t_game *game)
+static void	get_start_end(int *coords, t_game *game)
 {
-	*start_x = game->cam.x / TILE;
-	*start_y = game->cam.y / TILE;
-	if (*start_x < 0)
-		*start_x = 0;
-	if (*start_y < 0)
-		*start_y = 0;
-	*end_x = (game->cam.x + game->cam.width) / TILE + 1;
-	if (*end_x > game->map.width)
-		*end_x = game->map.width;
-	*end_y = (game->cam.y + game->cam.height) / TILE + 1;
-	if (*end_y > game->map.height)
-		*end_y = game->map.height;
+	coords[0] = game->cam.y / TILE;
+	if (coords[0] < 0)
+		coords[0] = 0;
+	coords[1] = (game->cam.y + game->cam.height) / TILE + 1;
+	if (coords[1] > game->map.height)
+		coords[1] = game->map.height;
+	coords[2] = game->cam.x / TILE;
+	if (coords[2] < 0)
+		coords[2] = 0;
+	coords[3] = (game->cam.x + game->cam.width) / TILE + 1;
+	if (coords[3] > game->map.width)
+		coords[3] = game->map.width;
+
 }
 
-void	render_map(t_game *game)
+static void	render_visible_tiles(t_game *game)
 {
 	int	x;
 	int	y;
-	int	start_x;
-	int	start_y;
-	int	end_x;
-	int	end_y;
-	int	draw_x;
-	int	draw_y;
+	int	coords[4];
 
-	draw_sky(game, 0x001a66, 0x87CEEB);
-	get_start_end(&start_y, &end_y, &start_x, &end_x, game);
-	y = start_y;
-	while (y < end_y)
+	get_start_end(coords, game);
+	y = coords[0];
+	while (y < coords[1])
 	{
-		x = start_x;
-		while (x < end_x)
+		x = coords[2];
+		while (x < coords[3])
 		{
-			draw_x = x * TILE - game->cam.x;
-			draw_y = y * TILE - game->cam.y;
-			draw_tile(game, game->map.grid[y][x], draw_x, draw_y);
+			draw_tile(game, game->map.grid[y][x],
+				x * TILE - game->cam.x,
+				y * TILE - game->cam.y);
 			x++;
 		}
 		y++;
 	}
+}
+
+void	render_map(t_game *game)
+{
+	int	draw_x;
+	int	draw_y;
+
+	draw_sky(game, 0x001a66, 0x87CEEB);
+	render_visible_tiles(game);
 	draw_x = (int)(game->player.px * TILE - game->cam.x);
 	draw_y = (int)(game->player.py * TILE - game->cam.y);
 	draw_tile(game, 'p', draw_x, draw_y);
