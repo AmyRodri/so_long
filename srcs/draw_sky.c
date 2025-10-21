@@ -6,11 +6,13 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 17:48:31 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:29:13 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdlib.h>
+#include <time.h>
 
 static int	get_gradient_color(int top, int bottom, float t)
 {
@@ -29,8 +31,48 @@ static int	get_gradient_color(int top, int bottom, float t)
 	b[2] = b[0] + t * (b[1] - b[0]);
 	return ((r[2] << 16) | (g[2] << 8) | b[2]);
 }
-#include <stdlib.h> // rand, srand
-#include <time.h> 
+
+void	init_clouds(t_game *game)
+{
+	int	i;
+
+	ft_srand(time(NULL));
+	game->num_clds = 10;
+	i = 0;
+	while (i < game->num_clds)
+	{
+		game->clds[i].x = ft_rand() % (game->map.width * TILE - 32);
+		game->clds[i].y = ft_rand() % (game->map.height * TILE / 2);
+		game->clds[i].index = ft_rand() % 10;
+		i++;
+	}
+}
+
+static void	draw_clouds(t_game *game)
+{
+	t_img	*sprite;
+	int		i;
+
+	i = 0;
+	while (i < game->num_clds)
+	{
+		if (game->clds[i].index == 0)
+			sprite = &game->sprites.clds.cld_1;
+		else if (game->clds[i].index == 1)
+			sprite = &game->sprites.clds.cld_2;
+		else if (game->clds[i].index == 2)
+			sprite = &game->sprites.clds.cld_3;
+		else if (game->clds[i].index == 3)
+			sprite = &game->sprites.clds.cld_4;
+		else if (game->clds[i].index == 4)
+			sprite = &game->sprites.clds.cld_5;
+		else
+			sprite = &game->sprites.clds.cld_6;
+		draw_sprite_to_frame(game, sprite, game->clds[i].x - game->cam.x / 2,
+			game->clds[i].y);
+		i++;
+	}
+}
 
 void	draw_sky(t_game *game, int top_color, int bottom_color)
 {
@@ -51,15 +93,5 @@ void	draw_sky(t_game *game, int top_color, int bottom_color)
 		}
 		pt.y++;
 	}
-	srand(time(NULL));
-	int num_sprites = 3;
-	int	i = 0;
-	while (i < num_sprites)
-	{
-		int	rand_x = rand() % (game->frame.width - 32);
-		int	rand_y = rand() % (game->frame.height / 2);
-
-		draw_sprite_to_frame(game, &game->sprites.cloud, rand_x, rand_y);
-		i++;
-	}
+	draw_clouds(game);
 }

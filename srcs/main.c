@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 15:53:42 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:41:41 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **args)
 	init_framebuffer(game);
 	init_player(&game->player);
 	init_cam(game);
+	init_clouds(game);
 	mlx_hook(game->win, 2, 1L << 0, handle_key, game);
 	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
 	mlx_hook(game->win, 17, 0l, close_window, NULL);

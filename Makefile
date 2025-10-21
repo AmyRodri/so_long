@@ -33,6 +33,7 @@ SRCS 		= main.c				\
 			draw_sky.c				\
 			move_horizontal.c		\
 			move_vertical.c			\
+			ft_rand.c				\
 			check_reachability.c		
 
 # Adiciona prefixo do diretório

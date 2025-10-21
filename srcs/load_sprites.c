@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 17:39:14 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:00:41 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ void	load_sprites(t_game *game)
 	game->sprites.knight = load_image(game->mlx, "assets/player.xpm");
 	game->sprites.exit = load_image(game->mlx, "assets/exit.xpm");
 	game->sprites.coin = load_image(game->mlx, "assets/coin_0.xpm");
-	game->sprites.cloud = load_image(game->mlx, "assets/cloud_1.xpm");
+	game->sprites.clds.cld_1 = load_image(game->mlx, "assets/clds/cloud_1.xpm");
+	game->sprites.clds.cld_2 = load_image(game->mlx, "assets/clds/cloud_2.xpm");
+	game->sprites.clds.cld_3 = load_image(game->mlx, "assets/clds/cloud_3.xpm");
+	game->sprites.clds.cld_4 = load_image(game->mlx, "assets/clds/cloud_4.xpm");
+	game->sprites.clds.cld_5 = load_image(game->mlx, "assets/clds/cloud_5.xpm");
+	game->sprites.clds.cld_6 = load_image(game->mlx, "assets/clds/cloud_6.xpm");
 }
