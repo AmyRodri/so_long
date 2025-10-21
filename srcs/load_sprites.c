@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/12 02:15:13 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/21 17:39:14 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	load_sprites(t_game *game)
 	game->sprites.knight = load_image(game->mlx, "assets/player.xpm");
 	game->sprites.exit = load_image(game->mlx, "assets/exit.xpm");
 	game->sprites.coin = load_image(game->mlx, "assets/coin_0.xpm");
+	game->sprites.cloud = load_image(game->mlx, "assets/cloud_1.xpm");
 }

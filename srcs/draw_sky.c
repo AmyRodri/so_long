@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 15:52:38 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:48:31 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	get_gradient_color(int top, int bottom, float t)
 	b[2] = b[0] + t * (b[1] - b[0]);
 	return ((r[2] << 16) | (g[2] << 8) | b[2]);
 }
+#include <stdlib.h> // rand, srand
+#include <time.h> 
 
 void	draw_sky(t_game *game, int top_color, int bottom_color)
 {
@@ -48,5 +50,16 @@ void	draw_sky(t_game *game, int top_color, int bottom_color)
 			pt.x++;
 		}
 		pt.y++;
+	}
+	srand(time(NULL));
+	int num_sprites = 3;
+	int	i = 0;
+	while (i < num_sprites)
+	{
+		int	rand_x = rand() % (game->frame.width - 32);
+		int	rand_y = rand() % (game->frame.height / 2);
+
+		draw_sprite_to_frame(game, &game->sprites.cloud, rand_x, rand_y);
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 16:03:53 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:44:03 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	draw_pixel_safe(t_game *game, t_img *sprite,
 	}
 }
 
-static void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
+void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
 {
 	t_point	frame_pt;
 	t_point	sprite_pt;

@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 16:50:46 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:44:22 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_sprites
 	t_img	knight;
 	t_img	exit;
 	t_img	coin;
+	t_img	cloud;
 }	t_sprites;
 
 typedef struct s_game
@@ -146,6 +147,7 @@ void	render_map(t_game *game);
 // draw_tile.c
 void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_tile(t_game *game, char tile, t_point pt);
+void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
 
 // draw_sky.c
 void	draw_sky(t_game *game, int top_color, int bottom_color);
