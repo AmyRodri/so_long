@@ -30,6 +30,7 @@ SRCS 		= main.c				\
 			update.c				\
 			render_map.c			\
 			draw_tile.c				\
+			draw_sky.c				\
 			check_reachability.c		
 
 # Adiciona prefixo do diretório

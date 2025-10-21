@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/21 12:36:49 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:41:22 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,52 +29,6 @@ static void	print_moves_window(t_game *game)
 	free(str);
 }
 
-static int	get_gradient_color(int top, int bottom, float t)
-{
-	int	r1;
-	int	g1;
-	int	b1;
-	int	r2;
-	int	g2;
-	int	b2;
-	int	r;
-	int	g;
-	int	b;
-
-	r1 = (top >> 16) & 0xFF;
-	g1 = (top >> 8) & 0xFF;
-	b1 = top & 0xFF;
-	r2 = (bottom >> 16) & 0xFF;
-	g2 = (bottom >> 8) & 0xFF;
-	b2 = bottom & 0xFF;
-	r = r1 + t * (r2 - r1);
-	g = g1 + t * (g2 - g1);
-	b = b1 + t * (b2 - b1);
-	return ((r << 16) | (g << 8) | b);
-}
-
-static void	draw_sky(t_game *game, int top_color, int bottom_color)
-{
-	int		y;
-	int		x;
-	float	t;
-	int		color;
-
-	y = 0;
-	while (y < game->frame.height)
-	{
-		t = (float)y / (float)game->frame.height;
-		color = get_gradient_color(top_color, bottom_color, t);
-		x = 0;
-		while (x < game->frame.width)
-		{
-			put_pixel(&game->frame, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
 static void	get_start_end(int *coords, t_game *game)
 {
 	coords[0] = game->cam.y / TILE;
@@ -89,7 +43,6 @@ static void	get_start_end(int *coords, t_game *game)
 	coords[3] = (game->cam.x + game->cam.width) / TILE + 1;
 	if (coords[3] > game->map.width)
 		coords[3] = game->map.width;
-
 }
 
 static void	render_visible_tiles(t_game *game)

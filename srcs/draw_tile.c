@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 12:17:41 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 14:56:11 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
+
+// static void	draw_sla(t_game *game, t_img *sprite, int x, int y)
+// {
+
+// }
 
 void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
 {
