@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/16 19:32:18 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/21 11:36:35 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define KEY_ESC 65307
 
 # define TILE 32
-# define JUMP_FORCE -0.12f
-# define GRAVITY 0.005f
-# define MAX_FALL_SPEED 0.005f
-# define MOVE_SPEED 0.01f
+# define JUMP_FORCE -0.08f
+# define GRAVITY 0.002f
+# define MAX_FALL_SPEED 0.002f
+# define MOVE_SPEED 0.005f
 
 typedef struct s_img
 {
@@ -89,7 +89,6 @@ typedef struct s_sprites
 	t_img	coin;
 }	t_sprites;
 
-
 typedef struct s_game
 {
 	t_map		map;
@@ -137,7 +136,6 @@ int		check_reachability(t_map *map, t_player *player);
 
 // check_map.c
 int		check_map(char *path, t_game *game);
-
 
 // main.c
 // main
