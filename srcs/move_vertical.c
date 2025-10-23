@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:46:27 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 16:52:25 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/23 00:43:06 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	gravity_fall(t_game *game)
 		&& game->map.grid[y + 1][left_right.y] != '1')
 	{
 		p->py = next_py;
-		p->y = (int)p->py;
 		p->on_ground = 0;
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 19:59:29 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:21:50 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_clouds(t_game *game)
 	{
 		game->clds[i].x = ft_rand() % (game->map.width * TILE - 32);
 		game->clds[i].y = ft_rand() % (game->map.height * TILE / 2);
-		game->clds[i].index = ft_rand() % 10;
+		game->clds[i].index = ft_rand() % 6;
 		i++;
 	}
 	game->num_star = 100;

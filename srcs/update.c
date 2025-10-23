@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/21 16:50:04 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/23 04:26:50 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ static void	update_cam(t_game *game)
 	int	max_y;
 
 	game->cam.x = (game->player.px * TILE) - (game->cam.width / 2);
-	game->cam.y = (game->player.py * TILE) - (game->cam.height / 2);
-	if (game->cam.x < 0)
-		game->cam.x = 0;
-	if (game->cam.y < 0)
-		game->cam.y = 0;
 	max_x = game->map.width * TILE - game->cam.width;
-	max_y = game->map.height * TILE - game->cam.height;
 	if (game->cam.x > max_x)
 		game->cam.x = max_x;
+	if (game->cam.x < 0)
+		game->cam.x = 0;
+	game->cam.y = (game->player.py * TILE) - (game->cam.height / 2);
+	max_y = game->map.height * TILE - game->cam.height;
+	if (game->cam.y < 0)
+		game->cam.y = 0;
 	if (game->cam.y > max_y)
 		game->cam.y = max_y;
 }
