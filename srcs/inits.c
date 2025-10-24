@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:31:41 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 15:34:07 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:58:05 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 static void	init_clouds(t_game *game)
 {
-	int	i;
+	uint32_t	seed;
+	int			i;
 
-	ft_srand(get_init_seed());
+	seed = get_init_seed();
 	game->num_clds = 10;
 	i = 0;
 	while (i < game->num_clds)
 	{
-		game->clds[i].x = ft_rand() % (game->map.width * TILE - 32);
-		game->clds[i].y = ft_rand() % (game->map.height * TILE / 2);
-		game->clds[i].index = ft_rand() % 6;
+		game->clds[i].x = ft_rand_range(&seed, game->map.width * TILE - 32);
+		game->clds[i].y = ft_rand_range(&seed, game->map.height * TILE / 2);
+		game->clds[i].index = ft_rand_range(&seed, 6);
 		i++;
 	}
 	game->num_star = 100;
 	i = 0;
 	while (i < game->num_star)
 	{
-		game->star[i].x = ft_rand() % (game->map.width * TILE);
-		game->star[i].y = ft_rand() % (game->map.height * TILE / 2);
-		game->star[i].index = ft_rand() % 3 + 1;
+		game->star[i].x = ft_rand_range(&seed, game->map.width * TILE);
+		game->star[i].y = ft_rand_range(&seed, game->map.height * TILE / 2);
+		game->star[i].index = ft_rand_range(&seed, 3 + 1);
 		i++;
 	}
 }

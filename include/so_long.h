@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 15:35:41 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:53:53 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,9 +190,8 @@ int			check_map(char *path, t_game *game);
 
 // ft_rand.c
 uint32_t	get_init_seed(void);
-uint32_t	ft_rand(void);
-uint32_t	ft_rand_range(uint32_t max);
-void		ft_srand(uint32_t s);
+uint32_t	ft_rand(uint32_t *seed);
+uint32_t	ft_rand_range(uint32_t *seed, uint32_t max);
 
 // ft_dtoa.c
 char		*ft_dtoa(double n, int decimals);
