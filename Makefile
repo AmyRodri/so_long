@@ -35,6 +35,7 @@ SRCS 		= main.c				\
 			move_vertical.c			\
 			ft_rand.c				\
 			ft_dtoa.c				\
+			inits.c					\
 			check_reachability.c		
 
 # Adiciona prefixo do diretório

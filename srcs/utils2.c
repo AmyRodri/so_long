@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 13:41:42 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:32:23 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,6 @@ int	check_args_and_map(int ac, char **args, t_game **game)
 	if (!check_map(args[1], *game))
 		return (1);
 	return (0);
-}
-
-void	init_framebuffer(t_game *game)
-{
-	int	w;
-	int	h;
-
-	w = 640;
-	h = game->map.height * TILE;
-	game->frame.ptr = mlx_new_image(game->mlx, w, h);
-	game->frame.addr = mlx_get_data_addr(game->frame.ptr, &game->frame.bpp,
-			&game->frame.line_len, &game->frame.endian);
-	game->frame.width = w;
-	game->frame.height = h;
-}
-
-void	init_cam(t_game *game)
-{
-	game->cam.width = game->frame.width;
-	game->cam.height = game->frame.height;
-	game->cam.x = 0;
-	game->cam.y = 0;
 }
 
 void	print_moves(t_player *p)

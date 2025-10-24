@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:28:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/16 19:32:43 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:32:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,4 @@ int	close_window(void *param)
 	(void)param;
 	exit(0);
 	return (0);
-}
-
-void	init_player(t_player *player)
-{
-	player->px = (float)player->x;
-	player->py = (float)player->y;
-	player->vx = 0;
-	player->vy = 0;
-	player->direction = 0;
-	player->collected = 0;
-	player->on_ground = 0;
-	player->left_pressed = 0;
-	player->right_pressed = 0;
-	player->jump_pressed = 0;
 }

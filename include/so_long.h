@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 13:50:54 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:35:41 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,6 @@ void		print_map(char **map);
 
 // utils2.c
 int			check_args_and_map(int ac, char **args, t_game **game);
-void		init_framebuffer(t_game *game);
-void		init_cam(t_game *game);
 void		print_moves(t_player *p);
 double		get_time(void);
 void		collect_coin_exit(t_game *game, int x, int y);
@@ -163,7 +161,6 @@ void		load_sprites(t_game *game);
 int			handle_key(int keycode, t_game *game);
 int			handle_key_release(int keycode, t_game *game);
 int			close_window(void *param);
-void		init_player(t_player *player);
 
 // update.c
 int			update(t_game *game);
@@ -178,7 +175,6 @@ void		draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
 
 // draw_sky.c
 void		draw_sky(t_game *game, int top_color, int bottom_color);
-void		init_clouds(t_game *game);
 
 // moves.c
 void		move_player(t_game *game, int x, int y);
@@ -200,6 +196,9 @@ void		ft_srand(uint32_t s);
 
 // ft_dtoa.c
 char		*ft_dtoa(double n, int decimals);
+
+// inits.c
+void		init_all(t_game *game);
 
 // main.c
 // main

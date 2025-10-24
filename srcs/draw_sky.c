@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 12:30:02 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:32:07 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,6 @@ static int	get_gradient_color(int top, int bottom, float t)
 	g[2] = g[0] + t * (g[1] - g[0]);
 	b[2] = b[0] + t * (b[1] - b[0]);
 	return ((r[2] << 16) | (g[2] << 8) | b[2]);
-}
-
-void	init_clouds(t_game *game)
-{
-	int	i;
-
-	ft_srand(get_init_seed());
-	game->num_clds = 10;
-	i = 0;
-	while (i < game->num_clds)
-	{
-		game->clds[i].x = ft_rand() % (game->map.width * TILE - 32);
-		game->clds[i].y = ft_rand() % (game->map.height * TILE / 2);
-		game->clds[i].index = ft_rand() % 6;
-		i++;
-	}
-	game->num_star = 100;
-	i = 0;
-	while (i < game->num_star)
-	{
-		game->star[i].x = ft_rand() % (game->map.width * TILE);
-		game->star[i].y = ft_rand() % (game->map.height * TILE / 2);
-		game->star[i].index = ft_rand() % 3 + 1;
-		i++;
-	}
 }
 
 static void	draw_stars(t_game *game)

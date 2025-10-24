@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_reachability.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/21 16:57:59 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/24 15:17:25 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	check_reachability(t_map *map, t_player *player)
 			&& map->visualizer[pt.y][pt.x] != 'F')
 			{
 				free_copy(map->visualizer, map->height);
-				return (erro_int("collectible items or inaccessible exit\n", 0));
+				return (erro_int("collectibles or locked exit\n", 0));
 			}
 			pt.x++;
 		}

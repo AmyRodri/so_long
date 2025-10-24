@@ -6,33 +6,11 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:15:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 11:50:33 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:33:36 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	init_all(t_game *game)
-{
-	int	height;
-	int	width;
-
-	game->mlx = mlx_init();
-	if ((game->map.width * TILE) < 640)
-		width = game->map.width * TILE;
-	else
-		width = 640;
-	if ((game->map.height * TILE) > 1000)
-		exit(erro_int("map height\n", 1));
-	else
-		height = game->map.height * TILE;
-	game->win = mlx_new_window(game->mlx, width, height, "so_long");
-	load_sprites(game);
-	init_framebuffer(game);
-	init_player(&game->player);
-	init_cam(game);
-	init_clouds(game);
-}
 
 int	main(int ac, char **args)
 {
