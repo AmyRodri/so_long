@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 19:58:55 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/24 13:50:54 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 # define MAX_CLD 10
 # define MAX_STAR 100
 
-# define JUMP_FORCE -0.08f
-# define GRAVITY 0.002f
-# define MAX_FALL_SPEED 0.002f
-# define MOVE_SPEED 0.005f
+# define JUMP_FORCE -0.12f
+# define GRAVITY 0.003f
+# define MAX_FALL_SPEED 0.05f
+# define MOVE_SPEED 0.05f
 
 typedef struct s_point
 {
@@ -146,6 +146,7 @@ int			check_args_and_map(int ac, char **args, t_game **game);
 void		init_framebuffer(t_game *game);
 void		init_cam(t_game *game);
 void		print_moves(t_player *p);
+double		get_time(void);
 void		collect_coin_exit(t_game *game, int x, int y);
 
 // move_vertical.c
@@ -196,6 +197,9 @@ uint32_t	get_init_seed(void);
 uint32_t	ft_rand(void);
 uint32_t	ft_rand_range(uint32_t max);
 void		ft_srand(uint32_t s);
+
+// ft_dtoa.c
+char		*ft_dtoa(double n, int decimals);
 
 // main.c
 // main

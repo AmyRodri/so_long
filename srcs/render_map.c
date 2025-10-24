@@ -3,30 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/22 23:58:39 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/24 13:41:18 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	print_moves_window(t_game *game)
+static double	fps(void)
+{
+	static double	last_time = 0;
+	static double	fps = 0;
+	static int		frames = 0;
+	double			current_time;
+
+	current_time = get_time();
+	frames++;
+	if (last_time == 0)
+		last_time = current_time;
+	if (current_time - last_time >= 1.0)
+	{
+		fps = frames / (current_time - last_time);
+		last_time = current_time;
+		frames = 0;
+	}
+	return (fps);
+}
+
+static void	str_num(t_game *game, int num, char *str, int x)
 {
 	char	*moves;
-	char	*str;
+	char	*frase;
 
-	moves = ft_itoa(game->player.moves);
-	str = ft_strjoin("moves: ", moves);
-	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, str);
+	moves = ft_itoa(num);
+	frase = ft_strjoin(str, moves);
+	mlx_string_put(game->mlx, game->win, x, 10, 0xFFFFFF, frase);
 	free(moves);
-	free(str);
-	moves = ft_itoa(game->player.collected);
-	str = ft_strjoin("coins: ", moves);
-	mlx_string_put(game->mlx, game->win, 100, 10, 0xFFFFFF, str);
-	free(moves);
-	free(str);
+	free(frase);
 }
 
 static void	get_start_end(int *coords, t_game *game)
@@ -77,5 +92,7 @@ void	render_map(t_game *game)
 	pt.y = (int)(game->player.py * TILE - game->cam.y);
 	draw_tile(game, 'p', pt);
 	mlx_put_image_to_window(game->mlx, game->win, game->frame.ptr, 0, 0);
-	print_moves_window(game);
+	str_num(game, game->player.moves, "moves: ", 10);
+	str_num(game, game->player.collected, "coins: ", 100);
+	str_num(game, (int)fps(), "fps: ", 200);
 }

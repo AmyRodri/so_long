@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_sky.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 20:21:50 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:30:02 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
-#include <time.h>
 
 static int	get_gradient_color(int top, int bottom, float t)
 {

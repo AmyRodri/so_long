@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/23 04:26:50 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/24 14:19:48 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <unistd.h>
 
 static void	update_pyshical(t_game *game)
 {
@@ -48,11 +49,52 @@ static void	update_cam(t_game *game)
 		game->cam.y = max_y;
 }
 
+void	my_usleep(double seconds)
+{
+	double	start;
+	double	end;
+
+	start = get_time();
+	end = get_time();
+	while (end - start < seconds)
+		end = get_time();
+}
+
+static void	fps_limiter(double current, double fps)
+{
+	double	frame_end;
+	double	frame_duration;
+	double	target_frame_time;
+
+	frame_end = get_time();
+	frame_duration = frame_end - current;
+	target_frame_time = 1.0 / fps;
+	if (frame_duration < target_frame_time)
+		my_usleep(target_frame_time - frame_duration);
+}
+
 int	update(t_game *game)
 {
-	update_pyshical(game);
-	update_cam(game);
+	static double	accumulator = 0.0;
+	static double	previos = 0.0;
+	double			current;
+	double			frame_time;
+	const double	tick_rate = 1.0 / 240.0;
+
+	if (previos == 0)
+		previos = get_time();
+	current = get_time();
+	frame_time = current - previos;
+	previos = current;
+	accumulator += frame_time;
+	while (accumulator >= tick_rate)
+	{
+		update_pyshical(game);
+		update_cam(game);
+		accumulator -= tick_rate;
+	}
 	mlx_clear_window(game->mlx, game->win);
 	render_map(game);
+	fps_limiter(current, 244.0);
 	return (0);
 }
