@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 15:53:53 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:39:27 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,9 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 }	t_game;
+
+// closer.c
+void		closer(t_game *game);
 
 // utils.c
 void		write_erro(char *s);

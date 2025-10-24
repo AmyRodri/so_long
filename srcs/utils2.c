@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 15:32:23 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:24:40 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void	collect_coin_exit(t_game *game, int x, int y)
 	}
 	if (game->map.grid[y][x] == 'E'
 		&& game->player.collected == game->map.collectibles)
+	{
+		closer(game);
 		exit(0);
+	}
 }

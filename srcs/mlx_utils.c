@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:28:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 15:32:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:22:29 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	handle_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
+	{
+		closer(game);
 		exit(0);
+	}
 	if (keycode == KEY_D || keycode == KEY_RIGHT)
 		game->player.right_pressed = 1;
 	if (keycode == KEY_A || keycode == KEY_LEFT)
@@ -38,7 +41,7 @@ int	handle_key_release(int keycode, t_game *game)
 
 int	close_window(void *param)
 {
-	(void)param;
+	closer((t_game *)param);
 	exit(0);
 	return (0);
 }
