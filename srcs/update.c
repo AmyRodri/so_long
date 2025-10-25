@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 14:19:48 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 01:44:52 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,6 @@ static void	update_cam(t_game *game)
 		game->cam.y = 0;
 	if (game->cam.y > max_y)
 		game->cam.y = max_y;
-}
-
-void	my_usleep(double seconds)
-{
-	double	start;
-	double	end;
-
-	start = get_time();
-	end = get_time();
-	while (end - start < seconds)
-		end = get_time();
 }
 
 static void	fps_limiter(double current, double fps)

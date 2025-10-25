@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 19:15:08 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 00:58:38 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ double	get_time(void)
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec + (tv.tv_usec / 1000000.0));
+}
+
+void	my_usleep(double seconds)
+{
+	double	start;
+	double	end;
+
+	start = get_time();
+	end = get_time();
+	while (end - start < seconds)
+		end = get_time();
 }
 
 void	collect_coin_exit(t_game *game, int x, int y)

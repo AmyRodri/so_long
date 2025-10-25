@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:06:48 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/21 15:49:19 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/25 01:05:20 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ static int	check_valid_char(t_map *map)
 		{
 			c = map->grid[pt.y][pt.x];
 			if (c != '1' && c != '0' && c != 'P' && c != 'C' && c != 'E')
-			{
-				ft_printf("linha: %d coluna: %d\n", pt.y, pt.x);
 				return (erro_int("invalid character in map\n", 0));
-			}
 			pt.x++;
 		}
 		pt.y++;

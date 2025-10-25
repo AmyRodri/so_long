@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:31:41 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 18:08:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 01:54:15 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	init_framebuffer(t_game *game)
 	int	w;
 	int	h;
 
-	w = 640;
+	w = game->map.width * TILE;
 	h = game->map.height * TILE;
 	game->frame.ptr = mlx_new_image(game->mlx, w, h);
 	game->frame.addr = mlx_get_data_addr(game->frame.ptr, &game->frame.bpp,
@@ -54,8 +54,6 @@ static void	init_framebuffer(t_game *game)
 
 static void	init_cam(t_game *game)
 {
-	game->cam.width = game->frame.width;
-	game->cam.height = game->frame.height;
 	game->cam.x = 0;
 	game->cam.y = 0;
 }
@@ -76,20 +74,17 @@ static void	init_player(t_player *player)
 
 void	init_all(t_game *game)
 {
-	int	height;
-	int	width;
-
 	game->mlx = mlx_init();
 	if ((game->map.width * TILE) < 640)
-		width = game->map.width * TILE;
+		game->cam.width = game->map.width * TILE;
 	else
-		width = 640;
-	if ((game->map.height * TILE) > 320)
-		height = 640;
-		// exit(erro_int("map height\n", 1));
+		game->cam.width = 640;
+	if ((game->map.height * TILE) < 320)
+		game->cam.height = game->map.height * TILE;
 	else
-		height = game->map.height * TILE;
-	game->win = mlx_new_window(game->mlx, width, height, "so_long");
+		game->cam.height = 320;
+	game->win = mlx_new_window(game->mlx, game->cam.width,
+			game->cam.height, "so_long");
 	load_sprites(game);
 	init_framebuffer(game);
 	init_player(&game->player);

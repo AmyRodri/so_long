@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:37:44 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 15:32:07 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 01:37:50 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	draw_stars(t_game *game)
 	while (i < game->num_star)
 	{
 		pt.x = game->star[i].x - game->cam.x / 5;
-		pt.y = game->star[i].y - game->cam.y;
+		pt.y = game->star[i].y - game->cam.y / 5;
 		put_pixel(&game->frame, pt.x, pt.y, 0xFFFFFF);
 		i++;
 	}
@@ -66,7 +66,7 @@ static void	draw_clouds(t_game *game)
 		else
 			sprite = &game->sprites.clds.cld_6;
 		draw_sprite_to_frame(game, sprite, game->clds[i].x - game->cam.x / 2,
-			game->clds[i].y);
+			game->clds[i].y - game->cam.y / 2);
 		i++;
 	}
 }

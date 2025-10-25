@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/25 00:25:04 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 00:58:51 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void		print_map(char **map);
 // utils2.c
 int			check_args_and_map(int ac, char **args, t_game **game);
 double		get_time(void);
+void		my_usleep(double seconds);
 void		collect_coin_exit(t_game *game, int x, int y);
 
 // move_vertical.c
