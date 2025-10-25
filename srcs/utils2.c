@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 16:24:40 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 19:15:08 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ int	check_args_and_map(int ac, char **args, t_game **game)
 	return (0);
 }
 
-void	print_moves(t_player *p)
-{
-	p->moves++;
-	ft_printf("Moves: %d\n", p->moves);
-}
-
 double	get_time(void)
 {
 	struct timeval	tv;
@@ -43,13 +37,13 @@ void	collect_coin_exit(t_game *game, int x, int y)
 {
 	if (game->map.grid[y][x] == 'C')
 	{
-		game->player.collected++;
 		game->map.grid[y][x] = '0';
-		ft_printf("Moedas coletadas: %d\n", game->player.collected);
+		print_coins(&game->player);
 	}
 	if (game->map.grid[y][x] == 'E'
 		&& game->player.collected == game->map.collectibles)
 	{
+		printf_victory(game);
 		closer(game);
 		exit(0);
 	}

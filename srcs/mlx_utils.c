@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:28:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 16:22:29 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 00:24:58 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	handle_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
+		print_exit();
 		closer(game);
 		exit(0);
 	}
@@ -41,6 +42,7 @@ int	handle_key_release(int keycode, t_game *game)
 
 int	close_window(void *param)
 {
+	print_exit();
 	closer((t_game *)param);
 	exit(0);
 	return (0);

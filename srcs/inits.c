@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:31:41 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 15:58:05 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/24 18:08:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ void	init_all(t_game *game)
 		width = game->map.width * TILE;
 	else
 		width = 640;
-	if ((game->map.height * TILE) > 1000)
-		exit(erro_int("map height\n", 1));
+	if ((game->map.height * TILE) > 320)
+		height = 640;
+		// exit(erro_int("map height\n", 1));
 	else
 		height = game->map.height * TILE;
 	game->win = mlx_new_window(game->mlx, width, height, "so_long");

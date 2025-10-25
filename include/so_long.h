@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/24 16:39:27 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/25 00:25:04 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ void		print_map(char **map);
 
 // utils2.c
 int			check_args_and_map(int ac, char **args, t_game **game);
-void		print_moves(t_player *p);
 double		get_time(void);
 void		collect_coin_exit(t_game *game, int x, int y);
 
@@ -201,6 +200,12 @@ char		*ft_dtoa(double n, int decimals);
 
 // inits.c
 void		init_all(t_game *game);
+
+// print_msg.c
+void		print_coins(t_player *p);
+void		print_moves(t_player *p);
+void		printf_victory(t_game *game);
+void		print_exit(void);
 
 // main.c
 // main
