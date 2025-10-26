@@ -6,24 +6,14 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:38:58 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 16:39:18 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/26 00:53:41 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	free_sprites(t_game *game)
+static void	free_sprites_clds(t_game *game)
 {
-	if (game->sprites.floor.ptr)
-		mlx_destroy_image(game->mlx, game->sprites.floor.ptr);
-	if (game->sprites.wall.ptr)
-		mlx_destroy_image(game->mlx, game->sprites.wall.ptr);
-	if (game->sprites.knight.ptr)
-		mlx_destroy_image(game->mlx, game->sprites.knight.ptr);
-	if (game->sprites.exit.ptr)
-		mlx_destroy_image(game->mlx, game->sprites.exit.ptr);
-	if (game->sprites.coin.ptr)
-		mlx_destroy_image(game->mlx, game->sprites.coin.ptr);
 	if (game->sprites.clds.cld_1.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.clds.cld_1.ptr);
 	if (game->sprites.clds.cld_2.ptr)
@@ -36,6 +26,27 @@ static void	free_sprites(t_game *game)
 		mlx_destroy_image(game->mlx, game->sprites.clds.cld_5.ptr);
 	if (game->sprites.clds.cld_6.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.clds.cld_6.ptr);
+}
+
+static void	free_sprites(t_game *game)
+{
+	if (game->sprites.player.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.player.ptr);
+	if (game->sprites.exit.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.exit.ptr);
+	if (game->sprites.coin.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.coin.ptr);
+	if (game->sprites.roof.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.roof.ptr);
+	if (game->sprites.dirt.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.dirt.ptr);
+	if (game->sprites.floor.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.floor.ptr);
+	if (game->sprites.walls.wl_1.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.walls.wl_1.ptr);
+	if (game->sprites.walls.wl_2.ptr)
+		mlx_destroy_image(game->mlx, game->sprites.walls.wl_2.ptr);
+	free_sprites_clds(game);
 }
 
 void	closer(t_game *game)

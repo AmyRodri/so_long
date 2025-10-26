@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/25 01:21:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/26 00:55:20 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,25 @@ void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
 	}
 }
 
-void	draw_tile(t_game *game, char tile, t_point pt)
+static void	draw_wall_floor(t_game *game, t_point pt, t_point draw)
 {
-	if (tile == '1')
-		draw_sprite_to_frame(game, &game->sprites.wall, pt.x, pt.y);
-	else if (tile == 'C')
-		draw_sprite_to_frame(game, &game->sprites.coin, pt.x, pt.y);
+	draw_sprite_to_frame(game, &game->sprites.dirt, draw.x, draw.y);
+	if (pt.y == 0)
+		draw_sprite_to_frame(game, &game->sprites.roof, draw.x, draw.y);
+	if (pt.x == 0)
+		draw_sprite_to_frame(game, &game->sprites.walls.wl_1, draw.x, draw.y);
+	if (pt.x == game->map.width - 1)
+		draw_sprite_to_frame(game, &game->sprites.walls.wl_2, draw.x, draw.y);
+	if (pt.y > 0 && game->map.grid[pt.y - 1][pt.x] != '1')
+		draw_sprite_to_frame(game, &game->sprites.floor, draw.x, draw.y);
+}
+
+void	draw_tile(t_game *game, char tile, t_point pt, t_point draw)
+{
+	if (tile == 'C')
+		draw_sprite_to_frame(game, &game->sprites.coin, draw.x, draw.y);
 	else if (tile == 'E' && game->player.collected == game->map.collectibles)
-		draw_sprite_to_frame(game, &game->sprites.exit, pt.x, pt.y);
-	else if (tile == 'p')
-		draw_sprite_to_frame(game, &game->sprites.knight, pt.x, pt.y);
+		draw_sprite_to_frame(game, &game->sprites.exit, draw.x, draw.y);
+	else if (tile == '1')
+		draw_wall_floor(game, pt, draw);
 }

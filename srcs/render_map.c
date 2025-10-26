@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/24 13:41:18 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/26 00:02:36 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,22 +75,20 @@ static void	render_visible_tiles(t_game *game)
 		{
 			draw_pt.x = pt.x * TILE - game->cam.x;
 			draw_pt.y = pt.y * TILE - game->cam.y;
-			draw_tile(game, game->map.grid[pt.y][pt.x], draw_pt);
+			draw_tile(game, game->map.grid[pt.y][pt.x], pt, draw_pt);
 			pt.x++;
 		}
 		pt.y++;
 	}
+	pt.x = (int)(game->player.px * TILE - game->cam.x);
+	pt.y = (int)(game->player.py * TILE - game->cam.y);
+	draw_sprite_to_frame(game, &game->sprites.player, pt.x, pt.y);
 }
 
 void	render_map(t_game *game)
 {
-	t_point	pt;
-
 	draw_sky(game, 0x001a66, 0x87CEEB);
 	render_visible_tiles(game);
-	pt.x = (int)(game->player.px * TILE - game->cam.x);
-	pt.y = (int)(game->player.py * TILE - game->cam.y);
-	draw_tile(game, 'p', pt);
 	mlx_put_image_to_window(game->mlx, game->win, game->frame.ptr, 0, 0);
 	str_num(game, game->player.moves, "moves: ", 10);
 	str_num(game, game->player.collected, "coins: ", 100);

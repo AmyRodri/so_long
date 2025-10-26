@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/21 19:59:01 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/10/26 00:02:20 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ static t_img	load_image(void *mlx, char *path)
 
 void	load_sprites(t_game *game)
 {
-	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
-	game->sprites.wall = load_image(game->mlx, "assets/wall.xpm");
-	game->sprites.knight = load_image(game->mlx, "assets/player.xpm");
+	game->sprites.player = load_image(game->mlx, "assets/player.xpm");
 	game->sprites.exit = load_image(game->mlx, "assets/exit.xpm");
 	game->sprites.coin = load_image(game->mlx, "assets/coin_0.xpm");
+	game->sprites.dirt = load_image(game->mlx, "assets/dirt.xpm");
+	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
+	game->sprites.roof = load_image(game->mlx, "assets/roof.xpm");
 	game->sprites.clds.cld_1 = load_image(game->mlx, "assets/clds/cloud_1.xpm");
 	game->sprites.clds.cld_2 = load_image(game->mlx, "assets/clds/cloud_2.xpm");
 	game->sprites.clds.cld_3 = load_image(game->mlx, "assets/clds/cloud_3.xpm");
 	game->sprites.clds.cld_4 = load_image(game->mlx, "assets/clds/cloud_4.xpm");
 	game->sprites.clds.cld_5 = load_image(game->mlx, "assets/clds/cloud_5.xpm");
 	game->sprites.clds.cld_6 = load_image(game->mlx, "assets/clds/cloud_6.xpm");
+	game->sprites.walls.wl_1 = load_image(game->mlx, "assets/walls/wall_0.xpm");
+	game->sprites.walls.wl_2 = load_image(game->mlx, "assets/walls/wall_1.xpm");
 }

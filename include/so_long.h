@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/25 00:58:51 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/26 00:02:15 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,21 @@ typedef struct s_cld_itc
 	int	index;
 }	t_cld_itc;
 
+typedef struct s_walls
+{
+	t_img	wl_1;
+	t_img	wl_2;
+}	t_walls;
+
 typedef struct s_sprites
 {
-	t_img	floor;
-	t_img	wall;
-	t_img	knight;
+	t_img	player;
 	t_img	exit;
 	t_img	coin;
+	t_img	roof;
+	t_img	dirt;
+	t_img	floor;
+	t_walls	walls;
 	t_cld	clds;
 }	t_sprites;
 
@@ -173,7 +181,7 @@ void		render_map(t_game *game);
 
 // draw_tile.c
 void		put_pixel(t_img *img, int x, int y, int color);
-void		draw_tile(t_game *game, char tile, t_point pt);
+void		draw_tile(t_game *game, char tile, t_point pt, t_point draw_pt);
 void		draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
 
 // draw_sky.c
