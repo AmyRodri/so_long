@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/25 01:44:52 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 15:02:58 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,18 @@ static void	fps_limiter(double current, double fps)
 		my_usleep(target_frame_time - frame_duration);
 }
 
+static void	upadate_coin(t_coins *coins)
+{
+	double	time_now;
+
+	time_now = get_time();
+	if (time_now - coins->last_update >= coins->delay)
+	{
+		coins->cur_frame = (coins->cur_frame + 1) % coins->num_frames;
+		coins->last_update = time_now;
+	}
+}
+
 int	update(t_game *game)
 {
 	static double	accumulator = 0.0;
@@ -80,6 +92,7 @@ int	update(t_game *game)
 	{
 		update_pyshical(game);
 		update_cam(game);
+		upadate_coin(&game->sprites.coins);
 		accumulator -= tick_rate;
 	}
 	mlx_clear_window(game->mlx, game->win);

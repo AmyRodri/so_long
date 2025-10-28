@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/26 00:55:20 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 15:05:35 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	draw_wall_floor(t_game *game, t_point pt, t_point draw)
 void	draw_tile(t_game *game, char tile, t_point pt, t_point draw)
 {
 	if (tile == 'C')
-		draw_sprite_to_frame(game, &game->sprites.coin, draw.x, draw.y);
+		draw_sprite_to_frame(game, &game->sprites.coins.coins_frame[game->sprites.coins.cur_frame], draw.x, draw.y);
 	else if (tile == 'E' && game->player.collected == game->map.collectibles)
 		draw_sprite_to_frame(game, &game->sprites.exit, draw.x, draw.y);
 	else if (tile == '1')

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:38:58 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/26 00:53:41 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:53:25 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,26 @@ static void	free_sprites_clds(t_game *game)
 		mlx_destroy_image(game->mlx, game->sprites.clds.cld_6.ptr);
 }
 
+static void	free_coins(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < MAX_COINS)
+	{
+		if (game->sprites.coins.coins_frame[i].ptr)
+			mlx_destroy_image(game->mlx,
+				game->sprites.coins.coins_frame[i].ptr);
+		i++;
+	}
+}
+
 static void	free_sprites(t_game *game)
 {
 	if (game->sprites.player.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.player.ptr);
 	if (game->sprites.exit.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.exit.ptr);
-	if (game->sprites.coin.ptr)
-		mlx_destroy_image(game->mlx, game->sprites.coin.ptr);
 	if (game->sprites.roof.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.roof.ptr);
 	if (game->sprites.dirt.ptr)
@@ -47,6 +59,7 @@ static void	free_sprites(t_game *game)
 	if (game->sprites.walls.wl_2.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.walls.wl_2.ptr);
 	free_sprites_clds(game);
+	free_coins(game);
 }
 
 void	closer(t_game *game)

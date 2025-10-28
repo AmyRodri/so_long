@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/26 00:02:20 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 15:13:46 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,46 @@ static t_img	load_image(void *mlx, char *path)
 
 	img.ptr = mlx_xpm_file_to_image(mlx, path, &img.width, &img.height);
 	if (!img.ptr)
+	{
+		ft_putstr_fd(path, 2);
+		ft_putstr_fd("\n", 2);
 		exit(erro_int("fail load sprites\n", 1));
+	}
 	img.addr = mlx_get_data_addr(img.ptr, &img.bpp, &img.line_len, &img.endian);
 	return (img);
+}
+
+static void	load_coins(t_game *game)
+{
+	int		i;
+	char	*path;
+	char	*num;
+	char	*tmp;
+	t_coins	*coins;
+
+	coins = &game->sprites.coins;
+	coins->num_frames = MAX_COINS;
+	coins->cur_frame = 0;
+	coins->last_update = get_time();
+	coins->delay = 0.06;
+	i = 0;
+	while (i < MAX_COINS)
+	{
+		num = ft_itoa(i);
+		tmp = ft_strjoin("assets/coins/coin_", num);
+		free(num);
+		path = ft_strjoin(tmp, ".xpm");
+		free(tmp);
+		coins->coins_frame[i] = load_image(game->mlx, path);
+		free(path);
+		i++;
+	}
 }
 
 void	load_sprites(t_game *game)
 {
 	game->sprites.player = load_image(game->mlx, "assets/player.xpm");
 	game->sprites.exit = load_image(game->mlx, "assets/exit.xpm");
-	game->sprites.coin = load_image(game->mlx, "assets/coin_0.xpm");
 	game->sprites.dirt = load_image(game->mlx, "assets/dirt.xpm");
 	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
 	game->sprites.roof = load_image(game->mlx, "assets/roof.xpm");
@@ -39,4 +69,5 @@ void	load_sprites(t_game *game)
 	game->sprites.clds.cld_6 = load_image(game->mlx, "assets/clds/cloud_6.xpm");
 	game->sprites.walls.wl_1 = load_image(game->mlx, "assets/walls/wall_0.xpm");
 	game->sprites.walls.wl_2 = load_image(game->mlx, "assets/walls/wall_1.xpm");
+	load_coins(game);
 }
