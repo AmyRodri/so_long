@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 15:13:46 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 17:47:33 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	load_coins(t_game *game)
 	coins->num_frames = MAX_COINS;
 	coins->cur_frame = 0;
 	coins->last_update = get_time();
-	coins->delay = 0.06;
+	coins->delay = 0.05;
 	i = 0;
 	while (i < MAX_COINS)
 	{
@@ -54,10 +54,36 @@ static void	load_coins(t_game *game)
 	}
 }
 
+static void	load_exit(t_game *game)
+{
+	int		i;
+	char	*path;
+	char	*num;
+	char	*tmp;
+	t_exit	*exit;
+
+	exit = &game->sprites.exits;
+	exit->num_frames = MAX_EXIT;
+	exit->cur_frame = 0;
+	exit->last_update = get_time();
+	exit->delay = 0.1;
+	i = 0;
+	while (i < MAX_EXIT)
+	{
+		num = ft_itoa(i);
+		tmp = ft_strjoin("assets/exits/exit_", num);
+		free(num);
+		path = ft_strjoin(tmp, ".xpm");
+		free(tmp);
+		exit->exit_frame[i] = load_image(game->mlx, path);
+		free(path);
+		i++;
+	}
+}
+
 void	load_sprites(t_game *game)
 {
 	game->sprites.player = load_image(game->mlx, "assets/player.xpm");
-	game->sprites.exit = load_image(game->mlx, "assets/exit.xpm");
 	game->sprites.dirt = load_image(game->mlx, "assets/dirt.xpm");
 	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
 	game->sprites.roof = load_image(game->mlx, "assets/roof.xpm");
@@ -69,5 +95,6 @@ void	load_sprites(t_game *game)
 	game->sprites.clds.cld_6 = load_image(game->mlx, "assets/clds/cloud_6.xpm");
 	game->sprites.walls.wl_1 = load_image(game->mlx, "assets/walls/wall_0.xpm");
 	game->sprites.walls.wl_2 = load_image(game->mlx, "assets/walls/wall_1.xpm");
+	load_exit(game);
 	load_coins(game);
 }

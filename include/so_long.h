@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 15:02:55 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 17:41:14 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define MAX_CLD 10
 # define MAX_STAR 100
 # define MAX_COINS 8
+# define MAX_EXIT 2
 
 # define JUMP_FORCE -0.12f
 # define GRAVITY 0.003f
@@ -104,6 +105,16 @@ typedef struct s_coins
 	int		y;
 }	t_coins;
 
+typedef struct s_exit
+{
+	t_img	exit_frame[MAX_EXIT];
+	int		num_frames;
+	int		cur_frame;
+	double	last_update;
+	double	delay;
+	int		x;
+	int		y;
+}	t_exit;
 
 typedef struct s_cld
 {
@@ -131,10 +142,10 @@ typedef struct s_walls
 typedef struct s_sprites
 {
 	t_img	player;
-	t_img	exit;
 	t_img	roof;
 	t_img	dirt;
 	t_img	floor;
+	t_exit	exits;
 	t_coins	coins;
 	t_walls	walls;
 	t_cld	clds;
