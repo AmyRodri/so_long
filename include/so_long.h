@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 21:14:03 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 21:45:01 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define JUMP_FORCE -0.12f
 # define GRAVITY 0.003f
 # define MAX_FALL_SPEED 0.05f
-# define MOVE_SPEED 0.05f
+# define MOVE_SPEED 0.04f
 
 typedef struct s_point
 {
@@ -137,6 +137,8 @@ typedef struct s_walls
 {
 	t_img	wl_1;
 	t_img	wl_2;
+	t_img	c_1;
+	t_img	c_2;
 }	t_walls;
 
 typedef struct s_sprites

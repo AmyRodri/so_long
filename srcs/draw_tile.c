@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 17:45:57 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 21:50:24 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ static void	draw_wall_floor(t_game *game, t_point pt, t_point draw)
 		draw_sprite_to_frame(game, &game->sprites.walls.wl_1, draw.x, draw.y);
 	if (pt.x == game->map.width - 1)
 		draw_sprite_to_frame(game, &game->sprites.walls.wl_2, draw.x, draw.y);
+	if (pt.x == 0 && pt.y == 0)
+		draw_sprite_to_frame(game, &game->sprites.walls.c_1, draw.x, draw.y);
+	if (pt.x == game->map.width - 1 && pt.y == 0)
+		draw_sprite_to_frame(game, &game->sprites.walls.c_2, draw.x, draw.y);
 	if (pt.y > 0 && game->map.grid[pt.y - 1][pt.x] != '1')
 		draw_sprite_to_frame(game, &game->sprites.floor, draw.x, draw.y);
 }
