@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/29 18:59:37 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 20:54:41 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	flood_fill(t_map *map, int y, int x, int max_jump)
 	map->visualizer[y][x] = 'F';
 	if (y + 1 < map->height && map->visualizer[y + 1][x] != '1')
 	{
+		flood_fill(map, y + 1, x, max_jump);
 		flood_fill(map, y + 1, x + 1, max_jump);
 		flood_fill(map, y + 1, x - 1, max_jump);
 		return ;
@@ -107,8 +108,7 @@ int	check_reachability(t_map *map, t_player *player)
 	if (!copy_grid(map))
 		return (0);
 	locate_player(map, player);
-	flood_fill(map, player->y, player->x, 3);
-	print_map(map->visualizer);
+	flood_fill(map, player->y, player->x, 2);
 	pt.y = 0;
 	while (pt.y < map->height)
 	{
@@ -118,6 +118,7 @@ int	check_reachability(t_map *map, t_player *player)
 			if ((map->grid[pt.y][pt.x] == 'C' || map->grid[pt.y][pt.x] == 'E')
 			&& map->visualizer[pt.y][pt.x] != 'F')
 			{
+				print_map(map->visualizer);
 				free_copy(map->visualizer, map->height);
 				return (erro_int("collectibles or locked exit\n", 0));
 			}

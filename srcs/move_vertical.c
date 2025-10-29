@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:46:27 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/27 15:24:45 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 19:08:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	colision_jump(t_game *game)
 		left_x = (int)p->px;
 		right_x = (int)(p->px + 0.9f);
 		if (game->map.grid[top_y][left_x] == '1'
-			&& game->map.grid[top_y][right_x] == '1')
+			|| game->map.grid[top_y][right_x] == '1')
 		{
 			p->vy = 0;
 			p->py = top_y + 1.0f;

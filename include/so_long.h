@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/29 12:27:47 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 20:37:07 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define MAX_COINS 8
 # define MAX_EXIT 4
 
-# define JUMP_FORCE -0.12f
+# define JUMP_FORCE -0.11f
 # define GRAVITY 0.003f
 # define MAX_FALL_SPEED 0.05f
 # define MOVE_SPEED 0.04f
