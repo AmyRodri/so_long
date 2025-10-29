@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/29 12:59:31 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 13:06:47 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	check_reachability(t_map *map, t_player *player)
 		return (0);
 	locate_player(map, player);
 	flood_fill(map, player->y, player->x, 3);
-	print_map(map->visualizer);
 	pt.y = 0;
 	while (pt.y < map->height)
 	{
