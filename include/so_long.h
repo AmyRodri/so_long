@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 17:41:14 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 21:14:03 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define MAX_CLD 10
 # define MAX_STAR 100
 # define MAX_COINS 8
-# define MAX_EXIT 2
+# define MAX_EXIT 4
 
 # define JUMP_FORCE -0.12f
 # define GRAVITY 0.003f
