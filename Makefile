@@ -28,6 +28,7 @@ SRCS 		= main.c				\
 			mlx_utils.c				\
 			moves.c					\
 			update.c				\
+			update_utils.c			\
 			render_map.c			\
 			draw_tile.c				\
 			draw_sky.c				\

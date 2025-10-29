@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 21:45:01 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 22:11:21 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ typedef struct s_coins
 	int		cur_frame;
 	double	last_update;
 	double	delay;
-	int		x;
-	int		y;
 }	t_coins;
 
 typedef struct s_exit
@@ -112,8 +110,6 @@ typedef struct s_exit
 	int		cur_frame;
 	double	last_update;
 	double	delay;
-	int		x;
-	int		y;
 }	t_exit;
 
 typedef struct s_cld
@@ -201,6 +197,11 @@ int			close_window(void *param);
 
 // update.c
 int			update(t_game *game);
+
+// update_utils.c
+void	fps_limiter(double current, double fps);
+void	upadate_coin(t_coins *coins);
+void	upadate_exit(t_exit *exit);
 
 // render_map.c
 void		render_map(t_game *game);

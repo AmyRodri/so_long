@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 21:45:50 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/28 22:14:53 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	load_sprites(t_game *game)
 	game->sprites.clds.cld_6 = load_image(game->mlx, "assets/clds/cloud_6.xpm");
 	game->sprites.walls.wl_1 = load_image(game->mlx, "assets/walls/wall_0.xpm");
 	game->sprites.walls.wl_2 = load_image(game->mlx, "assets/walls/wall_1.xpm");
-	game->sprites.walls.c_1 = load_image(game->mlx, "assets/walls/corner_0.xpm");
-	game->sprites.walls.c_2 = load_image(game->mlx, "assets/walls/corner_1.xpm");
+	game->sprites.walls.c_1 = load_image(game->mlx, "assets/walls/corne_0.xpm");
+	game->sprites.walls.c_2 = load_image(game->mlx, "assets/walls/corne_1.xpm");
 	load_exit(game);
 	load_coins(game);
 }
