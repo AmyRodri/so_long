@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 22:06:10 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 12:10:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	draw_tile(t_game *game, char tile, t_point pt, t_point draw)
 		cur_frame = game->sprites.exits.cur_frame;
 		draw_sprite_to_frame(game, &frame[cur_frame], draw.x, draw.y);
 	}
+	if (tile == 'S')
+		draw_sprite_to_frame(game, &game->sprites.spike, draw.x, draw.y);
 	else if (tile == '1')
 		draw_wall_floor(game, pt, draw);
 }

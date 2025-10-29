@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 22:14:53 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 12:09:18 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	load_sprites(t_game *game)
 	game->sprites.dirt = load_image(game->mlx, "assets/dirt.xpm");
 	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
 	game->sprites.roof = load_image(game->mlx, "assets/roof.xpm");
+	game->sprites.spike = load_image(game->mlx, "assets/spike.xpm");
 	game->sprites.clds.cld_1 = load_image(game->mlx, "assets/clds/cloud_1.xpm");
 	game->sprites.clds.cld_2 = load_image(game->mlx, "assets/clds/cloud_2.xpm");
 	game->sprites.clds.cld_3 = load_image(game->mlx, "assets/clds/cloud_3.xpm");

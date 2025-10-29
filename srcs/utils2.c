@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/25 00:58:38 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 12:28:04 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	collect_coin_exit(t_game *game, int x, int y)
 		&& game->player.collected == game->map.collectibles)
 	{
 		printf_victory(game);
+		closer(game);
+		exit(0);
+	}
+	if (game->map.grid[y][x] == 'S')
+	{
+		printf_dead(game);
 		closer(game);
 		exit(0);
 	}

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/28 22:11:21 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 12:27:47 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_sprites
 	t_img	roof;
 	t_img	dirt;
 	t_img	floor;
+	t_img	spike;
 	t_exit	exits;
 	t_coins	coins;
 	t_walls	walls;
@@ -199,9 +200,9 @@ int			close_window(void *param);
 int			update(t_game *game);
 
 // update_utils.c
-void	fps_limiter(double current, double fps);
-void	upadate_coin(t_coins *coins);
-void	upadate_exit(t_exit *exit);
+void		fps_limiter(double current, double fps);
+void		upadate_coin(t_coins *coins);
+void		upadate_exit(t_exit *exit);
 
 // render_map.c
 void		render_map(t_game *game);
@@ -241,6 +242,7 @@ void		init_all(t_game *game);
 void		print_coins(t_player *p);
 void		print_moves(t_player *p);
 void		printf_victory(t_game *game);
+void		printf_dead(t_game *game);
 void		print_exit(void);
 
 // main.c
