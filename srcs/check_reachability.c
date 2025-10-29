@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/29 13:06:47 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/29 18:59:37 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@ static void	flood_fill(t_map *map, int y, int x, int max_jump)
 
 	if (y < 0 || y >= map->height || x < 0 || x >= map->width)
 		return ;
-	if (map->visualizer[y][x] == '1' || map->visualizer[y][x] == 'F')
+	if (map->visualizer[y][x] == '1' || map->visualizer[y][x] == 'F'
+		|| map->visualizer[y][x] == 'S')
 		return ;
 	map->visualizer[y][x] = 'F';
 	if (y + 1 < map->height && map->visualizer[y + 1][x] != '1')
-		return (flood_fill(map, y + 1, x, max_jump));
+	{
+		flood_fill(map, y + 1, x + 1, max_jump);
+		flood_fill(map, y + 1, x - 1, max_jump);
+		return ;
+	}
 	flood_fill(map, y, x + 1, max_jump);
 	flood_fill(map, y, x - 1, max_jump);
 	jump = 1;
@@ -103,6 +108,7 @@ int	check_reachability(t_map *map, t_player *player)
 		return (0);
 	locate_player(map, player);
 	flood_fill(map, player->y, player->x, 3);
+	print_map(map->visualizer);
 	pt.y = 0;
 	while (pt.y < map->height)
 	{
