@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:46:27 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/29 19:08:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 20:09:11 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	gravity_fall(t_game *game)
 	if (p->vy > MAX_FALL_SPEED)
 		p->vy = MAX_FALL_SPEED;
 	next_py = p->py + p->vy;
-	left_right.x = (int)p->px;
-	left_right.y = (int)(p->px + 0.9f);
+	left_right.x = (int)(p->px + 0.1f);
+	left_right.y = (int)(p->px + 0.8f);
 	y = (int)next_py;
 	if (game->map.grid[y + 1][left_right.x] != '1'
 		&& game->map.grid[y + 1][left_right.y] != '1')
