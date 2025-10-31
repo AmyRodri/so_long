@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:00:31 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/09 20:12:30 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 19:32:53 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,21 @@ void	free_game(t_game *game)
 	free(game);
 }
 
-void	print_map(char **map)
+int	check_collision(t_game *game)
 {
-	int	y;
-	int	x;
+	float	player_x;
+	float	player_y;
+	float	mob_x;
+	float	mob_y;
 
-	if (!map)
-		return ;
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			ft_putchar(map[y][x]);
-			x++;
-		}
-		ft_putchar('\n');
-		y++;
-	}
+	player_x = game->player.px * TILE;
+	player_y = game->player.py * TILE;
+	mob_x = game->mob.x;
+	mob_y = game->mob.y;
+	if (player_x + TILE - 1 < mob_x
+		|| player_x > mob_x + TILE - 1
+		|| player_y + TILE - 1 < mob_y
+		|| player_y > mob_y + TILE - 1)
+		return (0);
+	return (1);
 }

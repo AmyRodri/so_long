@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 19:09:43 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 19:20:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ void		write_erro(char *s);
 int			erro_int(char *s, int exit_code);
 char		**erro_map(char *s);
 void		free_game(t_game *game);
-void		print_map(char **map);
+int			check_collision(t_game *game);
 
 // utils2.c
 int			check_args_and_map(int ac, char **args, t_game **game);

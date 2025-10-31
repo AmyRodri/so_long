@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 15:42:03 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 19:21:20 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ void	collect_coin_exit(t_game *game, int x, int y)
 		exit(0);
 	}
 	if (game->map.grid[y][x] == 'S')
+	{
+		printf_dead(game);
+		closer(game);
+		exit(0);
+	}
+	if (check_collision(game))
 	{
 		printf_dead(game);
 		closer(game);
