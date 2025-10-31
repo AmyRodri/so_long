@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/29 20:54:41 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/30 21:28:11 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int	check_reachability(t_map *map, t_player *player)
 			if ((map->grid[pt.y][pt.x] == 'C' || map->grid[pt.y][pt.x] == 'E')
 			&& map->visualizer[pt.y][pt.x] != 'F')
 			{
-				print_map(map->visualizer);
 				free_copy(map->visualizer, map->height);
 				return (erro_int("collectibles or locked exit\n", 0));
 			}
