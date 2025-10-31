@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 02:01:48 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:40:48 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,16 @@ void	my_usleep(double seconds)
 		end = get_time();
 }
 
-// void	load_array(t_game *game, char *mid_path, t_img *frames, int num_frames)
-// {
-// 	int		i;
-// 	char	*path;
-// 	char	*num;
-// 	char	*tmp;
-
-// 	i = 0;
-// 	while (i < num_frames)
-// 	{
-// 		num = ft_itoa(i);
-// 		tmp = ft_strjoin(mid_path, num);
-// 		free(num);
-// 		path = ft_strjoin(tmp, ".xpm");
-// 		free(tmp);
-// 		frames[i] = load_image(game->mlx, path);
-// 		free(path);
-// 		i++;
-// 	}
-// }
+int	check_floof_fill(t_map *map, int y, int x)
+{
+	if (y < 0 || y >= map->height || x < 0 || x >= map->width)
+		return (0);
+	if (map->visualizer[y][x] == '1' || map->visualizer[y][x] == 'F'
+		|| map->visualizer[y][x] == 'S')
+		return (0);
+	map->visualizer[y][x] = 'F';
+	return (1);
+}
 
 void	collect_coin_exit(t_game *game, int x, int y)
 {

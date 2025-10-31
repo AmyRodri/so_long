@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 02:15:53 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:41:00 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,14 @@ int			check_args_and_map(int ac, char **args, t_game **game);
 double		get_time(void);
 void		my_usleep(double seconds);
 void		collect_coin_exit(t_game *game, int x, int y);
-// void		load_array(t_game *game, char *mid_path, t_img *frames, int num_frames);
+int			check_floof_fill(t_map *map, int y, int x);
+
+// player.c
+void		draw_sprite_flipped(t_game *game, t_img *sprite, int x, int y);
+void		draw_player(t_game *game, int x, int y);
+void		update_player(t_game *game);
+void		update_pfra(t_game *game);
+void		load_player(t_game *game);
 
 // move_vertical.c
 void		jumping(t_game *game);
@@ -222,6 +229,8 @@ void		update_horizontal(t_game *game);
 
 // load_sprites.c
 void		load_sprites(t_game *game);
+void		load_array(t_game *game, char *mid_path,
+				t_img *frames, int num_frames);
 
 // mlx_utils.c
 int			handle_key(int keycode, t_game *game);
@@ -244,6 +253,8 @@ void		put_pixel(t_img *img, int x, int y, int color);
 void		draw_tile(t_game *game, char tile, t_point pt, t_point draw_pt);
 void		draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
 void		draw_sprite_flipped(t_game *game, t_img *sprite, int x, int y);
+void		draw_pixel_safe(t_game *game, t_img *sprite,
+				t_point frame_pt, t_point sprite_pt);
 
 // draw_sky.c
 void		draw_sky(t_game *game, int top_color, int bottom_color);

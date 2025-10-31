@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 01:06:19 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/30 21:28:11 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:40:44 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,8 @@ static void	flood_fill(t_map *map, int y, int x, int max_jump)
 	int	ny;
 	int	jump;
 
-	if (y < 0 || y >= map->height || x < 0 || x >= map->width)
+	if (!check_floof_fill(map, y, x))
 		return ;
-	if (map->visualizer[y][x] == '1' || map->visualizer[y][x] == 'F'
-		|| map->visualizer[y][x] == 'S')
-		return ;
-	map->visualizer[y][x] = 'F';
 	if (y + 1 < map->height && map->visualizer[y + 1][x] != '1')
 	{
 		flood_fill(map, y + 1, x, max_jump);

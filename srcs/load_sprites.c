@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 02:22:00 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:33:11 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static t_img	load_image(void *mlx, char *path)
 	return (img);
 }
 
-static void	load_array(t_game *game, char *mid_path, t_img *frames, int num_frames)
+void	load_array(t_game *game, char *mid_path,
+	t_img *frames, int num_frames)
 {
 	int		i;
 	char	*path;
@@ -70,21 +71,6 @@ static void	load_exit(t_game *game)
 	exit->last_update = get_time();
 	exit->delay = 0.1;
 	load_array(game, "assets/exits/exit_", exit->exit_frame, MAX_EXIT);
-}
-
-static void	load_player(t_game *game)
-{
-	t_pfra	*player;
-
-	player = &game->sprites.player;
-	player->num_frames = MAX_EXIT;
-	player->cur_frame = 0;
-	player->last_update = get_time();
-	player->delay = 0.08;
-	load_array(game, "assets/player/idle_", player->idle, MAX_IDLE);
-	load_array(game, "assets/player/run_", player->run, MAX_RUN);
-	load_array(game, "assets/player/jump_", player->jump, MAX_JUMP);
-	load_array(game, "assets/player/fall_", player->fall, MAX_FALL);
 }
 
 void	load_sprites(t_game *game)
