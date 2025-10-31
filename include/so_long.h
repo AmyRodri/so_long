@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 01:42:34 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:15:53 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@
 # define MAX_COINS 8
 # define MAX_EXIT 4
 # define MAX_IDLE 6
-# define MAX_RUN 0
-# define MAX_JUMP 0
-# define MAX_FALL 0
+# define MAX_RUN 8
+# define MAX_JUMP 3
+# define MAX_FALL 3
 
 # define JUMP_FORCE -0.11f
 # define GRAVITY 0.003f
@@ -211,6 +211,7 @@ int			check_args_and_map(int ac, char **args, t_game **game);
 double		get_time(void);
 void		my_usleep(double seconds);
 void		collect_coin_exit(t_game *game, int x, int y);
+// void		load_array(t_game *game, char *mid_path, t_img *frames, int num_frames);
 
 // move_vertical.c
 void		jumping(t_game *game);

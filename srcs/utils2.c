@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/29 12:28:04 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:01:48 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,27 @@ void	my_usleep(double seconds)
 	while (end - start < seconds)
 		end = get_time();
 }
+
+// void	load_array(t_game *game, char *mid_path, t_img *frames, int num_frames)
+// {
+// 	int		i;
+// 	char	*path;
+// 	char	*num;
+// 	char	*tmp;
+
+// 	i = 0;
+// 	while (i < num_frames)
+// 	{
+// 		num = ft_itoa(i);
+// 		tmp = ft_strjoin(mid_path, num);
+// 		free(num);
+// 		path = ft_strjoin(tmp, ".xpm");
+// 		free(tmp);
+// 		frames[i] = load_image(game->mlx, path);
+// 		free(path);
+// 		i++;
+// 	}
+// }
 
 void	collect_coin_exit(t_game *game, int x, int y)
 {

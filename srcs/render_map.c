@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 01:42:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:22:33 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ void	draw_player(t_game *game, int x, int y)
 	frame = &pfra->idle[0];
 	if (p->state == IDLE)
 		frame = &pfra->idle[pfra->cur_frame];
-	// else if (p->state == RUN)
-	// 	frame = &pfra->run[pfra->cur_frame];
-	// else if (p->state == JUMP)
-	// 	frame = &pfra->jump[0];
-	// else
-	// 	frame = &pfra->fall[0];
+	else if (p->state == RUN)
+		frame = &pfra->run[pfra->cur_frame];
+	else if (p->state == JUMP)
+		frame = &pfra->jump[pfra->cur_frame];
+	else
+		frame = &pfra->fall[pfra->cur_frame];
 
 	if (p->dir == LEFT)
 		draw_sprite_flipped(game, frame, x, y);

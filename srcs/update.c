@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 01:34:22 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:22:38 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ void	update_pfra(t_game *game)
 	time_now = get_time();
 	if (p->state == IDLE)
 		max_frames = MAX_IDLE;
-	// else if (p->state == RUN)
-	// 	max_frames = MAX_RUN;
-	// else if (p->state == JUMP)
-	// 	max_frames = MAX_JUMP;
-	// else
-	// 	max_frames = MAX_FALL;
+	else if (p->state == RUN)
+		max_frames = MAX_RUN;
+	else if (p->state == JUMP)
+		max_frames = MAX_JUMP;
+	else
+		max_frames = MAX_FALL;
 	if (p->state == IDLE || p->state == RUN)
 	{
 		if (time_now - pfra->last_update >= pfra->delay)

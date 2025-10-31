@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:38:58 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 00:36:21 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 02:22:11 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	free_sprite_array(void *mlx, t_img *sprite, int num_frame)
 
 static void	free_sprites(t_game *game)
 {
-	// if (game->sprites.player.ptr)
-	// 	mlx_destroy_image(game->mlx, game->sprites.player.ptr);
 	if (game->sprites.dirt.ptr)
 		mlx_destroy_image(game->mlx, game->sprites.dirt.ptr);
 	if (game->sprites.roof.ptr)
@@ -64,6 +62,10 @@ static void	free_sprites(t_game *game)
 	free_sprites_clds(game);
 	free_sprite_array(game->mlx, game->sprites.coins.coins_frame, MAX_COINS);
 	free_sprite_array(game->mlx, game->sprites.exits.exit_frame, MAX_EXIT);
+	free_sprite_array(game->mlx, game->sprites.player.idle, MAX_IDLE);
+	free_sprite_array(game->mlx, game->sprites.player.run, MAX_RUN);
+	free_sprite_array(game->mlx, game->sprites.player.jump, MAX_JUMP);
+	free_sprite_array(game->mlx, game->sprites.player.fall, MAX_FALL);
 }
 
 void	closer(t_game *game)
