@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:31:41 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 00:47:40 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:47:01 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	init_all(t_game *game)
 	load_sprites(game);
 	init_framebuffer(game);
 	init_player(&game->player);
+	init_mob(game);
 	init_cam(game);
 	init_clouds(game);
 }

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 02:28:01 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:47:21 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static void	render_visible_tiles(t_game *game)
 	pt.x = (int)(game->player.px * TILE - game->cam.x);
 	pt.y = (int)(game->player.py * TILE - game->cam.y);
 	draw_player(game, pt.x, pt.y);
+	draw_mob(game);
 }
 
 void	render_map(t_game *game)

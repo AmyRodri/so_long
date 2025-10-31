@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 02:34:57 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:47:30 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	update(t_game *game)
 	{
 		update_pyshical(game);
 		update_pfra(game);
+		update_mob(game);
 		update_cam(game);
 		upadate_coin(&game->sprites.coins);
 		upadate_exit(&game->sprites.exits);

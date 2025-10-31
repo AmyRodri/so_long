@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:06:48 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/30 21:24:14 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:41:32 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_valid_char(t_map *map)
 		{
 			c = map->grid[pt.y][pt.x];
 			if (c != '1' && c != '0' && c != 'P' && c != 'C' && c != 'E'
-				&& c != 'S')
+				&& c != 'S' && c != 'M')
 				return (erro_int("invalid character in map\n", 0));
 			pt.x++;
 		}

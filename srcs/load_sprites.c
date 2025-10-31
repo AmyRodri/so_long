@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 02:33:11 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:46:10 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void	load_sprites(t_game *game)
 	load_player(game);
 	load_exit(game);
 	load_coins(game);
+	load_mob(game);
 }

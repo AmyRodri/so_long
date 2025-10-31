@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:58:43 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 02:40:48 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:42:03 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_floof_fill(t_map *map, int y, int x)
 	if (y < 0 || y >= map->height || x < 0 || x >= map->width)
 		return (0);
 	if (map->visualizer[y][x] == '1' || map->visualizer[y][x] == 'F'
-		|| map->visualizer[y][x] == 'S')
+		|| map->visualizer[y][x] == 'S' || map->visualizer[y][x] == 'M')
 		return (0);
 	map->visualizer[y][x] = 'F';
 	return (1);

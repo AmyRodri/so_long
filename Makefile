@@ -40,6 +40,8 @@ SRCS 		= main.c				\
 			closer.c				\
 			print_msg.c				\
 			player.c				\
+			mob.c					\
+			mob_ia.c				\
 			check_reachability.c		
 
 # Adiciona prefixo do diretório

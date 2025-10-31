@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/31 02:41:00 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 19:09:43 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define MAX_RUN 8
 # define MAX_JUMP 3
 # define MAX_FALL 3
+# define MAX_MOB 3
 
 # define JUMP_FORCE -0.11f
 # define GRAVITY 0.003f
@@ -103,6 +104,31 @@ typedef struct s_player
 	int		jump_time;
 }	t_player;
 
+typedef struct s_mob
+{
+	double	x;
+	double	y;
+	int		dir;
+	double	speed;
+	int		active;
+}	t_mob;
+
+typedef struct s_check_mob
+{
+	double	map_x;
+	double	map_y;
+	double	next_x;
+	double	front_x;
+	int		tx_front;
+	int		top_y;
+	int		mid_y;
+	int		bot_y;
+	char	top;
+	char	mid;
+	char	bot;
+	int		ty_below_front;
+}	t_check_mob;
+
 typedef struct s_map
 {
 	char	**grid;
@@ -156,6 +182,15 @@ typedef struct s_walls
 	t_img	c_2;
 }	t_walls;
 
+typedef struct s_mfra
+{
+	t_img	mob_frame[MAX_MOB];
+	int		num_frames;
+	int		cur_frame;
+	double	last_update;
+	double	delay;
+}	t_mfra;
+
 typedef struct s_pfra
 {
 	t_img	idle[MAX_IDLE];
@@ -171,6 +206,7 @@ typedef struct s_pfra
 typedef struct s_sprites
 {
 	t_pfra	player;
+	t_mfra	mob;
 	t_img	roof;
 	t_img	dirt;
 	t_img	floor;
@@ -184,6 +220,7 @@ typedef struct s_sprites
 typedef struct s_game
 {
 	t_map		map;
+	t_mob		mob;
 	t_player	player;
 	t_sprites	sprites;
 	t_img		frame;
@@ -219,6 +256,15 @@ void		draw_player(t_game *game, int x, int y);
 void		update_player(t_game *game);
 void		update_pfra(t_game *game);
 void		load_player(t_game *game);
+
+// mob.c
+void		init_mob(t_game *game);
+void		draw_mob(t_game *game);
+void		load_mob(t_game *game);
+
+// mob_ia.c
+void		update_mob(t_game *game);
+
 
 // move_vertical.c
 void		jumping(t_game *game);

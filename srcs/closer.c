@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:38:58 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/31 02:22:11 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 15:47:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	free_sprites(t_game *game)
 	free_sprite_array(game->mlx, game->sprites.player.run, MAX_RUN);
 	free_sprite_array(game->mlx, game->sprites.player.jump, MAX_JUMP);
 	free_sprite_array(game->mlx, game->sprites.player.fall, MAX_FALL);
+	free_sprite_array(game->mlx, game->sprites.mob.mob_frame, MAX_MOB);
 }
 
 void	closer(t_game *game)
