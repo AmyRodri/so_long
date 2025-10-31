@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:32:34 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/26 00:02:36 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 01:42:59 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,31 @@ static void	get_start_end(int *coords, t_game *game)
 		coords[3] = game->map.width;
 }
 
+void	draw_player(t_game *game, int x, int y)
+{
+	t_player	*p;
+	t_pfra		*pfra;
+	t_img		*frame;
+
+	p = &game->player;
+	pfra = &game->sprites.player;
+
+	frame = &pfra->idle[0];
+	if (p->state == IDLE)
+		frame = &pfra->idle[pfra->cur_frame];
+	// else if (p->state == RUN)
+	// 	frame = &pfra->run[pfra->cur_frame];
+	// else if (p->state == JUMP)
+	// 	frame = &pfra->jump[0];
+	// else
+	// 	frame = &pfra->fall[0];
+
+	if (p->dir == LEFT)
+		draw_sprite_flipped(game, frame, x, y);
+	else
+		draw_sprite_to_frame(game, frame, x, y);
+}
+
 static void	render_visible_tiles(t_game *game)
 {
 	t_point	pt;
@@ -82,7 +107,8 @@ static void	render_visible_tiles(t_game *game)
 	}
 	pt.x = (int)(game->player.px * TILE - game->cam.x);
 	pt.y = (int)(game->player.py * TILE - game->cam.y);
-	draw_sprite_to_frame(game, &game->sprites.player, pt.x, pt.y);
+	draw_player(game, pt.x, pt.y);
+	// draw_sprite_to_frame(game, &game->sprites.player.idle[game->sprites.player.cur_frame], pt.x, pt.y);
 }
 
 void	render_map(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:16:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/29 20:37:07 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 01:42:34 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 # define MAX_STAR 100
 # define MAX_COINS 8
 # define MAX_EXIT 4
+# define MAX_IDLE 6
+# define MAX_RUN 0
+# define MAX_JUMP 0
+# define MAX_FALL 0
 
 # define JUMP_FORCE -0.11f
 # define GRAVITY 0.003f
@@ -66,12 +70,27 @@ typedef struct s_cam
 	int		height;
 }	t_cam;
 
+typedef enum e_state
+{
+	IDLE,
+	RUN,
+	JUMP,
+	FALL
+}	t_state;
+
+typedef enum e_dir
+{
+	LEFT,
+	RIGHT
+}	t_dir;
+
 typedef struct s_player
 {
 	int		x;
 	int		y;
 	int		moves;
-	int		direction;
+	t_state	state;
+	t_dir	dir;
 	int		collected;
 	int		on_ground;
 	float	px;
@@ -137,9 +156,21 @@ typedef struct s_walls
 	t_img	c_2;
 }	t_walls;
 
+typedef struct s_pfra
+{
+	t_img	idle[MAX_IDLE];
+	t_img	run[MAX_RUN];
+	t_img	jump[MAX_JUMP];
+	t_img	fall[MAX_FALL];
+	int		num_frames;
+	int		cur_frame;
+	double	last_update;
+	double	delay;
+}	t_pfra;
+
 typedef struct s_sprites
 {
-	t_img	player;
+	t_pfra	player;
 	t_img	roof;
 	t_img	dirt;
 	t_img	floor;
@@ -211,6 +242,7 @@ void		render_map(t_game *game);
 void		put_pixel(t_img *img, int x, int y, int color);
 void		draw_tile(t_game *game, char tile, t_point pt, t_point draw_pt);
 void		draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y);
+void		draw_sprite_flipped(t_game *game, t_img *sprite, int x, int y);
 
 // draw_sky.c
 void		draw_sky(t_game *game, int top_color, int bottom_color);

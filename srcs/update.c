@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:55:49 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/28 22:10:34 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 01:34:22 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,55 @@ static void	update_cam(t_game *game)
 		game->cam.y = max_y;
 }
 
+void	update_player(t_game *game)
+{
+	t_player	*p;
+
+	p = &game->player;
+	if (p->vy < 0)
+		p->state = JUMP;
+	else if (p->vy > 0)
+		p->state = FALL;
+	else if (p->vx != 0)
+		p->state = RUN;
+	else
+		p->state = IDLE;
+	if (p->vx > 0)
+		p->dir = RIGHT;
+	else if (p->vx < 0)
+		p->dir = LEFT;
+}
+
+void	update_pfra(t_game *game)
+{
+	t_player	*p;
+	t_pfra		*pfra;
+	double		time_now;
+	int			max_frames;
+
+	p = &game->player;
+	pfra = &game->sprites.player;
+	time_now = get_time();
+	if (p->state == IDLE)
+		max_frames = MAX_IDLE;
+	// else if (p->state == RUN)
+	// 	max_frames = MAX_RUN;
+	// else if (p->state == JUMP)
+	// 	max_frames = MAX_JUMP;
+	// else
+	// 	max_frames = MAX_FALL;
+	if (p->state == IDLE || p->state == RUN)
+	{
+		if (time_now - pfra->last_update >= pfra->delay)
+		{
+			pfra->cur_frame = (pfra->cur_frame + 1) % max_frames;
+			pfra->last_update = time_now;
+		}
+	}
+	else
+		pfra->cur_frame = 0;
+}
+
 int	update(t_game *game)
 {
 	static double	accumulator = 0.0;
@@ -65,6 +114,8 @@ int	update(t_game *game)
 	while (accumulator >= tick_rate)
 	{
 		update_pyshical(game);
+		update_player(game);
+		update_pfra(game);
 		update_cam(game);
 		upadate_coin(&game->sprites.coins);
 		upadate_exit(&game->sprites.exits);

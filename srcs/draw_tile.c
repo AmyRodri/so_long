@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:09:49 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/29 12:10:59 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 01:42:46 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,32 @@ void	draw_sprite_to_frame(t_game *game, t_img *sprite, int x, int y)
 			{
 				frame_pt.x = x + sprite_pt.x;
 				draw_pixel_safe(game, sprite, frame_pt, sprite_pt);
+				sprite_pt.x++;
+			}
+		}
+		sprite_pt.y++;
+	}
+}
+
+void	draw_sprite_flipped(t_game *game, t_img *sprite, int x, int y)
+{
+	t_point	frame_pt;
+	t_point	sprite_pt;
+	t_point	flipped_src;
+
+	sprite_pt.y = 0;
+	while (sprite_pt.y < sprite->height)
+	{
+		frame_pt.y = y + sprite_pt.y;
+		if (frame_pt.y >= 0 && frame_pt.y < game->frame.height)
+		{
+			sprite_pt.x = 0;
+			while (sprite_pt.x < sprite->width)
+			{
+				frame_pt.x = x + sprite_pt.x;
+				flipped_src.x = sprite->width - 1 - sprite_pt.x;
+				flipped_src.y = sprite_pt.y;
+				draw_pixel_safe(game, sprite, frame_pt, flipped_src);
 				sprite_pt.x++;
 			}
 		}

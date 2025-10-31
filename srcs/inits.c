@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:31:41 by kamys             #+#    #+#             */
-/*   Updated: 2025/10/25 01:54:15 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 00:47:40 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	init_player(t_player *player)
 	player->py = (float)player->y;
 	player->vx = 0;
 	player->vy = 0;
-	player->direction = 0;
 	player->collected = 0;
 	player->on_ground = 0;
 	player->left_pressed = 0;

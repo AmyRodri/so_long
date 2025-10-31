@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:11:16 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/10/30 21:34:01 by kamys            ###   ########.fr       */
+/*   Updated: 2025/10/31 00:41:03 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,35 @@ static void	load_exit(t_game *game)
 	}
 }
 
+static void	load_player(t_game *game)
+{
+	int		i;
+	char	*path;
+	char	*num;
+	char	*tmp;
+	t_pfra	*player;
+
+	player = &game->sprites.player;
+	player->num_frames = MAX_EXIT;
+	player->cur_frame = 0;
+	player->last_update = get_time();
+	player->delay = 0.08;
+	i = 0;
+	while (i < MAX_IDLE)
+	{
+		num = ft_itoa(i);
+		tmp = ft_strjoin("assets/player/idle_", num);
+		free(num);
+		path = ft_strjoin(tmp, ".xpm");
+		free(tmp);
+		player->idle[i] = load_image(game->mlx, path);
+		free(path);
+		i++;
+	}
+}
+
 void	load_sprites(t_game *game)
 {
-	game->sprites.player = load_image(game->mlx, "assets/player.xpm");
 	game->sprites.dirt = load_image(game->mlx, "assets/dirt.xpm");
 	game->sprites.roof = load_image(game->mlx, "assets/roof.xpm");
 	game->sprites.floor = load_image(game->mlx, "assets/floor.xpm");
@@ -98,6 +124,7 @@ void	load_sprites(t_game *game)
 	game->sprites.walls.wl_2 = load_image(game->mlx, "assets/walls/wall_1.xpm");
 	game->sprites.walls.c_1 = load_image(game->mlx, "assets/walls/corne_0.xpm");
 	game->sprites.walls.c_2 = load_image(game->mlx, "assets/walls/corne_1.xpm");
+	load_player(game);
 	load_exit(game);
 	load_coins(game);
 }
